@@ -181,7 +181,7 @@ Click **Next**.
 
 Fill out the following **Database** fields:
 
-- **Database Name** - LabDB_*Initials*
+- **Database Name** - LabDB_\ *Initials*
 - **Description** - (Optional) Description
 - **POSTGRES Password** - techX2019!
 - **Database Parameter Profile** - DEFAULT_POSTGRES_PARAMS
@@ -198,7 +198,7 @@ Click **Next**.
 
 Fill out the following **Time Machine** fields:
 
-- **Name** - LabDB-*Initials*_TM
+- **Name** - LabDB-\ *Initials*\ _TM
 - **Description** - (Optional) Description
 - **SLA** - Gold
 - **Schedule** - Default
@@ -219,7 +219,7 @@ Upon completion, select **Dashboard** from the drop down menu and note your new 
 
 .. figure:: images/4i.png
 
-You should also be able to see the **DBServer-***Initials* VM running within Prism.
+You should also be able to see the **DBServer-**\ *Initials* VM running within Prism.
 
 Connecting to the Database
 ++++++++++++++++++++++++++
@@ -244,7 +244,7 @@ Using your **Tools VM**, open **pgAdmin**.
 
 Under **Browser**, right-click **Servers** and select **Create > Server...**.
 
-On the **General** tab, provide your database server name (e.g. **DBServer-***Initials*).
+On the **General** tab, provide your database server name (e.g. **DBServer-**\ *Initials*).
 
 On the **Connection** tab, fill out the following fields:
 
@@ -356,7 +356,7 @@ Click **Next**.
 
 On the **Database Server** tab, fill out the following fields:
 
-- **Name** - LabDB_*Initials*_Clone
+- **Name** - LabDB_\ *Initials*\ _Clone
 - **Description** - (Optional) Description
 - **Password** - techX2019!
 - **Database Parameter Profile** - DEFAULT_POSTGRES_PARAMS

@@ -7,6 +7,7 @@
   :hidden:
 
   era/era
+  karbon/karbon
 
 .. toctree::
   :maxdepth: 2
