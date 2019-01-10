@@ -8,6 +8,7 @@
 
   era/era
   karbon/karbon
+  flow/flow
 
 .. toctree::
   :maxdepth: 2
