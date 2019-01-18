@@ -1,8 +1,8 @@
 .. _files:
 
--------------
-Nutanix Files
--------------
+-----
+Files
+-----
 
 *The estimated time to complete this lab is 60 minutes.*
 
@@ -166,7 +166,7 @@ Review the **Summary** and click **Create**.
 Testing the Share
 .................
 
-Connect to your *Initials*\ **ToolsVM** via RDP or console.
+Connect to your *Initials*\ **-ToolsVM** via RDP or console.
 
 .. note::
 
@@ -367,7 +367,7 @@ The cluster will now deploy and power on a 4th Files VM. Status can be monitored
 
 Following the expansion, verify client connections can now be load balanced to the new VM.
 
-Connect to your *Initials*\ **ToolsVM** via RDP or console.
+Connect to your *Initials*\ **-ToolsVM** via RDP or console.
 
 Open **Control Panel > Administrative Tools > DNS**.
 
