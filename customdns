@@ -1,0 +1,1 @@
+Powershell.exe -command Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddress "10.21.78.40";$pass = convertto-securestring "nutanix/4u" -asplaintext -force;$domaincred = new-object system.management.automation.pscredential "NTNXLAB\Administrator",$pass;add-computer -credential $domaincred -domainname "NTNXLAB.local" -restart -force;

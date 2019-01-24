@@ -27,3 +27,10 @@ Click **Log in with My Nutanix** and provide your **my.nutanix.com** credentials
 .. note::
 
   These are the same credentials used to access the Nutanix Support Portal.
+
+At this point you should have a dashboard with a default user (you), project, and and category.
+
+.. figure:: images/1.png
+
+Staging the Environment
++++++++++++++++++++++++

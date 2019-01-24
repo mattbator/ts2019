@@ -15,6 +15,7 @@
   :name: _opt_101_labs
   :hidden:
 
+  buckets/buckets
   calm_linux/calm_linux
   files/files
   karbon/karbon
