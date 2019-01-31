@@ -20,6 +20,7 @@
   epoch/epoch
   files/files
   karbon/karbon
+  xiiot/xiiot
   xtract_aws/xtract_aws
 
 .. toctree::
