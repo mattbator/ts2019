@@ -11,7 +11,7 @@
 
 .. toctree::
   :maxdepth: 2
-  :caption: Optional Intro Labs
+  :caption: Introductory Labs
   :name: _opt_101_labs
   :hidden:
 
@@ -31,6 +31,14 @@
 
   calm_win/calm_win
 ..  cloud_native_lab/cloud_native_lab
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Sponsored Labs
+  :name: _sponsor_labs
+  :hidden:
+
+  hycu/hycu
 
 .. toctree::
   :maxdepth: 2
