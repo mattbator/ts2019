@@ -38,7 +38,8 @@
   :name: _sponsor_labs
   :hidden:
 
-  hycu/hycu
+  .. hycu/hycu
+  veeam/veeam
 
 .. toctree::
   :maxdepth: 2
