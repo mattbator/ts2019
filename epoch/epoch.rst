@@ -139,13 +139,13 @@ The timeline slider at the top of the map allows you to define the period of tim
 
 .. figure:: images/8.png
 
-<How long does Epoch hold on to these stats?>
+Epoch hold on to these stats for upto one year. 
 
 Remove the default **Filters** and **Groups** options by clicking the **x** on each. This should display a **Merged Node** containing the consolidated statistics of all collectors.
 
 Select the **Merged Node** and explore to available metrics. What is the host count of the node?
 
-<Any context here of why someone would want to look at the merged node?>
+E.g. Someone would want to look at Merged Node if its containerized environment. How many containers are running on that node, etc and status of each container can be discovered once clicked on that merged node.
 
 Unselect the **Merged Node** (e.g. click the grey area outside the node) and click **Discard Changes > Discard Changes** to restore the Filter and GroupBy settings.
 
