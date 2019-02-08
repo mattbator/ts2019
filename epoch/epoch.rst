@@ -306,11 +306,11 @@ Takeaways
 
 What are the key things you should know about **Nutanix Xi Epoch**?
 
-- Stuff
+Proof of Concept: https://www.nutanix.com/products/epoch/signup/
 
-- Goes
+Everything about Epoch:  https://nutanixinc.sharepoint.com/sites/EpochHome36
 
-- Here
+User Guide:  https://docs.netsil.com/user-guide/
 
 Getting Connected
 +++++++++++++++++
@@ -320,15 +320,15 @@ Have a question about **Nutanix Xi Epoch**? Please reach out to the resources be
 +---------------------------------------------------------------------------------+
 |  Xi Epoch Product Contacts                                                      |
 +================================+================================================+
-|  Slack Channel                 |                                                |
+|  Slack Channel                 |       #epoch                                   |
 +--------------------------------+------------------------------------------------+
-|  Product Manager               |                                                |
+|  Product Manager               |       Adhiraj Singh                            |
 +--------------------------------+------------------------------------------------+
-|  Product Marketing Manager     |                                                |
+|  Product Marketing Manager     |       Chris Brown (Shard with Calm)            |
 +--------------------------------+------------------------------------------------+
-|  Technical Marketing Engineer  |                                                |
+|  Technical Marketing Engineer  |       Rohan Shah & Jai Desai                   |
 +--------------------------------+------------------------------------------------+
-|  SME                           |                                                |
+|  Head of Sales                 |       Jai Desai                                |
 +--------------------------------+------------------------------------------------+
-|  SME                           |                                                |
+|  SME                           |       Harkirat Randhawa                        |
 +--------------------------------+------------------------------------------------+
