@@ -38,7 +38,7 @@
   :name: _sponsor_labs
   :hidden:
 
-  .. hycu/hycu
+  hycu/hycu
   veeam/veeam
 
 .. toctree::
@@ -196,9 +196,9 @@ All disk images required to complete the labs have been uploaded to the Image Se
      - Xtract for VMs 2.0.3 Disk Image
    * - **hycu-3.5.0-6138.qcow2**
      - HYCU 3.5.0 Appliance Disk Image
-   * - **VeeamAvailabilityforNutanixAHV_1.0.457.vmdk**
+   * - **VeeamAvailability_1.0.457.vmdk**
      - Veeam Backup Proxy for AHV 1.0 Disk Image
-   * - **VeeamBackup&Replication_9.5.4.2615.Update4.iso**
+   * - **VeeamBR-9.5.4.2615.Update4.iso**
      - Veeam Backup & Replication 9.5 Update 4 ISO Image
 
 Credentials

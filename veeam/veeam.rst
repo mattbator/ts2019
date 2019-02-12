@@ -12,9 +12,9 @@ Veeam Availability for Nutanix AHV
 Overview
 ++++++++
 
-<Could use a more general overview of Veeam here, maybe details on # of customers, ecosystem, etc. - want to emphasize all of that is being brought to AHV with the backup proxy. This is where we need to grab people's attention.>
+With customers that include 82% of the Fortune 500 and 58% of the Global 2000, Veeam is a leader in backup and availability across physical, virtual, and cloud environments. With Veeam Backup & Replication v9.5, Veeam has introduced support for Nutanix AHV through the Backup Proxy for AHV.
 
-Veeam Backup & Replication 9.5 introduces support for Nutanix AHV through the Backup Proxy for AHV.
+.. figure:: images/veeamstats.png
 
 **In this exercise you will deploy and configure a Veeam Backup Server, deploy and configure a Backup Proxy for AHV, configure the connection to your Nutanix cluster and existing Veeam Backup & Replication infrastructure, and execute backup and restore operations.**
 
@@ -104,7 +104,9 @@ Out of the box installation of Veeam Backup & Replication is fast and simple.
 
 By default the Veeam Backup Server will deploy a Windows SQL Server Express database instance. A production Veeam deployment would use an external, highly available database.
 
-The installer will also create a Veeam Backup Repository to act as a backup target, by default it will select the volume with the most free space exposed to the backup server (the local 250GB disk added to the *Initials*\ **-VeeamServer** VM). For storing backups of Nutanix AHV VMs, Veeam currently supports the use of simple backup repositories, scale-out backup repositories, and ExaGrid appliances. HPE StoreOne and DellEMC DataDomain appliances are not currently supported. <Is this still current? We could probably break out into a bullet list of the supported platforms with a sentence or two about each option, at least for scale out backup repo>
+The installer will also create a Veeam Backup Repository to act as a backup target, by default it will select the volume with the most free space exposed to the backup server (the local 250GB disk added to the *Initials*\ **-VeeamServer** VM).
+
+For storing backups of Nutanix AHV VMs, Veeam currently supports the use of simple backup repositories (any Windows-compatible file or block storage), scale-out backup repositories, and ExaGrid appliances. DellEMC Data Domain DD Boost and HPE StoreOnce Catalyst proprietary storage protocols are not currently supported for Veeam Availability for Nutanix, but each of these storage targets can still be used as standard CIFS repositories.
 
 While waiting for installation to complete, proceed to `Deploying Veeam Proxy Appliance`_.
 
@@ -131,7 +133,7 @@ Fill out the following fields and click **Save**:
 - Select **+ Add New Disk**
 
   - **Operation** - Clone from Image Service
-  - **Image** - VeeamBackupProxy
+  - **Image** - VeeamAvailability_1.0.457
   - Select **Add**
 - Select **Add New NIC**
 
@@ -179,7 +181,7 @@ When prompted about the missing license, click **OK**.
 
 .. note::
 
-  For personal lab or HPOC deployments, Veeam licenses can be requested by Nutanix employees and partners by contacting <???>
+  For personal lab or HPOC deployments, Veeam licenses can be requested by Nutanix employees and partners by contacting Ronn.Martin@veeam.com.
 
 To license the appliance, click :fa:`cog` **> Appliance Settings > Summary > License** and install `this temporary license <>`_.
 
@@ -340,6 +342,10 @@ Click **Finish** and monitor the restore operation until successfully completed.
 
 <The restore was crazy fast at 25 seconds, did it come from the backup repository or is it actually using local snapshots for the most recent restore points? An explanation of what's going on behind the scenes here would be helpful.>
 
+.. note::
+
+  If the most recent restore point is selected, the restore operation will complete very rapidly. Veeam will retain the most recent, rolling snapshot of each VM and can restore directly from the local snapshot rather than the backup target storage.
+
 Power on the restored VM in Prism and verify it reflects the latest manual backup.
 
 **Congratulations!** From a single web console you were able to manage and monitor your Veeam backup operations for your Nutanix cluster.
@@ -418,20 +424,13 @@ Takeaways
 
 What are the key things you should know about **Veeam** and the **Backup Proxy for AHV**?
 
-
 - Veeam is a widely adopted backup technology that features native support for Nutanix AHV.
 
-- Veeam provides agentless VM backup.
+- The Veeam Backup Proxy for AHV provides a standalone HTML5 UI for Nutanix administrators to quickly perform backup and restore operations without access to the Veeam Backup & Replication Console.
+
+- Veeam provides agentless VM backup, integrating directly with Nutanix snapshots via API.
 
 - Veeam has advanced restore capabilities including support for file level restore, Microsoft Active Directory, Microsoft Exchange, Microsoft SQL Server, and Oracle.
-
-- Need
-
-- Better
-
-- Stuff
-
-- Here
 
 Getting Connected
 +++++++++++++++++
@@ -445,14 +444,12 @@ Have a question about **Veeam**? Please reach out to the resources below:
 +--------------------------------+------------------------------------------------+
 |  Nutanix Product Manager       | Mark Nijmeijer, mark.nijmeijer@nutanix.com     |
 +--------------------------------+------------------------------------------------+
-|  Technical Marketing Engineer  | ???                                            |
-+--------------------------------+------------------------------------------------+
-|  SME                           | ???                                            |
+|  Solution Marketing Manager    | Chris Paap, chris.paap@nutanix.com             |
 +--------------------------------+------------------------------------------------+
 
-Looking to connect with your local Veeam rep or SE? Reach out to <???>
+Looking to connect with your local Veeam rep or SE? Reach out to ryan.goff@veeam.com
 
-Additional Resources
-++++++++++++++++++++
+Zero to Protect SE Challenge!
++++++++++++++++++++++++++++++
 
-- Are there any documents, case studies, training, promotions, etc. that we want to link to here?
+Check out http://zerotoprotect.com/ for details on how Nutanix and Veeam SEs can enter to win a Trek bicycle for deploying Veeam and AHV.
