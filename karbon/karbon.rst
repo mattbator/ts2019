@@ -467,15 +467,24 @@ Takeaways
 
 What are the key things you should know about **Nutanix Karbon**?
 
-- Karbon is included in all AOS software editions.
+- Any Nutanix AHV customer is a potential target for Karbon, including:
 
-- Leveraging Karbon, developers can enjoy the native Kubernetes experience that is delivered fast while all complexities of infrastructure are abstracted with no additional costs.
+  - Customers that perform internal development
+  - Customers who have or plan to adopt CI/CD
+  - Customers with Digital Transformation or Application Modernization initiatives
 
-- Karbon enables enterprises to provide a private-cloud Kubernetes solution with the simplicity and performance of public clouds.
+- The primary benefit of Karbon is reduced CapEX and OpEX of managing and operating Kubernetes environments, reducing learning curve and enabling DevOps/ITOps teams to quickly support their development teams to start deploying containerized workloads.
+
+- Karbon delivers One-Click operations for Kubernetes provisioning and lifecycle management, enabling enterprises to provide a private-cloud Kubernetes solution with the simplicity and performance of public clouds.
+
+- Karbon is included in all AOS software editions at no additional cost.
 
 - Karbon can provide additional functionality to Kubernetes over time through its plugin architecture.
 
-- Karbon is part of a complete Cloud Native solution from Nutanix including storage (Volumes/Buckets/Files), database automation (Era), and enhanced monitoring (Epoch).
+- Karbon will be a certified Kubernetes distribution and has passed the `Kuberentes Conformance Certification <https://landscape.cncf.io/landscape=certified-kubernetes-hosted&selected=nutanix-karbon>`_.
+
+- Karbon is listed on the official `Kubernetes Solutions <https://kubernetes.io/docs/setup/pick-right-solution/>`_ and `Cloud Native Computing Foundation Landscape <https://landscape.cncf.io/category=certified-kubernetes-hosted&selected=nutanix-karbon>`_ pages.
+
 
 Getting Connected
 +++++++++++++++++
