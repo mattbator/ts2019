@@ -40,6 +40,7 @@
 
   hycu/hycu
   veeam/veeam
+  peer/peer
 
 .. toctree::
   :maxdepth: 2
