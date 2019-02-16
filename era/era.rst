@@ -1,14 +1,14 @@
 .. _era:
 
----
+-----------
 Era
----
+-----------
 
 *The estimated time to complete this lab is 60 minutes.*
 
 .. raw:: html
 
-  <iframe src="https://drive.google.com/file/d/1sU4_1GPVTNGJwNDoy0kB04r-vz4-9Thq/preview" width="720" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/5sXHvRawtT4?rel=0&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Overview
 ++++++++
@@ -18,6 +18,13 @@ Nutanix Era is a software suite that automates and simplifies database administr
 With One Click database provisioning and Copy Data Management (CDM) as its first services, Nutanix Era enables DBAs to provision, clone, refresh, and backup their databases to any point in time. Line of business applications in every vertical depend on databases, providing use cases in both production and non-production environments.
 
 **In this lab you will explore how Era can be used to standardize database deployment, allow for rapid cloning from a production database to a clone used for application development, updating that clone based on production data, and finally leveraging the REST API to understand how Era can integrate with a customer's existing automation tools.**
+
+Lab Setup
++++++++++
+
+This lab requires applications provisioned as part of the :ref:`windows_tools_vm`.
+
+If you have not yet deployed this VM, see the linked steps before proceeding with the lab.
 
 Deploying Era
 +++++++++++++
@@ -32,7 +39,7 @@ Click **Create VM**.
 
 Fill out the following fields:
 
-- **Name** - Era-*Initials*
+- **Name** - *Initials*-Era
 - **Description** - (Optional) Description for your VM.
 - **vCPU(s)** - 4
 - **Number of Cores per vCPU** - 1
@@ -160,7 +167,7 @@ Select the **PostgreSQL** engine and click **Next**.
 Fill out the following **Database Server** fields:
 
 - **Database Server** - Select **Create New Server**
-- **Database Server Name** - DBServer-*Initials*
+- **Database Server Name** - *Initials*-DBServer
 - **Compute Profile** - Lab
 - **Network Profile** - DEFAULT_OOB_NETWORK
 - **Software Profile** - POSTGRES_10.4_OOB
@@ -181,7 +188,7 @@ Click **Next**.
 
 Fill out the following **Database** fields:
 
-- **Database Name** - LabDB_\ *Initials*
+- **Database Name** - *Initials*\_LabDB
 - **Description** - (Optional) Description
 - **POSTGRES Password** - techX2019!
 - **Database Parameter Profile** - DEFAULT_POSTGRES_PARAMS
@@ -198,7 +205,7 @@ Click **Next**.
 
 Fill out the following **Time Machine** fields:
 
-- **Name** - LabDB-\ *Initials*\ _TM
+- **Name** - *Initials*\_LabDB_TM
 - **Description** - (Optional) Description
 - **SLA** - Gold
 - **Schedule** - Default
@@ -219,7 +226,7 @@ Upon completion, select **Dashboard** from the drop down menu and note your new 
 
 .. figure:: images/4i.png
 
-You should also be able to see the **DBServer-**\ *Initials* VM running within Prism.
+You should also be able to see the *Initials*-**DBServer-**  VM running within Prism.
 
 Connecting to the Database
 ++++++++++++++++++++++++++
@@ -236,7 +243,7 @@ Note the IP Address of your **Database Server**.
 
 .. figure:: images/5b.png
 
-Using your **Tools VM**, open **pgAdmin**.
+Using *Initials*\ **-Windows-ToolsVM**, open **pgAdmin**.
 
 .. note::
 
@@ -244,7 +251,7 @@ Using your **Tools VM**, open **pgAdmin**.
 
 Under **Browser**, right-click **Servers** and select **Create > Server...**.
 
-On the **General** tab, provide your database server name (e.g. **DBServer-**\ *Initials*).
+On the **General** tab, provide your database server name (e.g. *Initials*-**DBServer**).
 
 On the **Connection** tab, fill out the following fields:
 
@@ -256,13 +263,13 @@ On the **Connection** tab, fill out the following fields:
 
 .. figure:: images/5d.png
 
-Expand **DBServer**-*Initials* **> Databases** and note an empty database has been created by Era.
+Expand Initials*-**DBServer **> Databases** and note an empty database has been created by Era.
 
 .. figure:: images/5h.png
 
 ..  Now you will create a table to store data regarding Names and Ages.
 
-  Expand **labdb_***Initials* **> Schemas > public**. Right-click on **Tables** and select **Create > Table**.
+  Expand *Initials*\_**labdb** **> Schemas > public**. Right-click on **Tables** and select **Create > Table**.
 
   .. figure:: images/5e.png
 
@@ -341,7 +348,7 @@ Click **Next**.
 On the **Database Server** tab, fill out the following fields:
 
 - **Database Server** - Create New Server
-- **VM Name** - DBServer-*Initials*-Clone
+- **VM Name** - *Initials*-DBServer-Clone
 - **Compute Profile** - Lab
 - **Network Profile** - DEFAULT_OOB_NETWORK
 - **SSH Public Key** -
@@ -356,7 +363,7 @@ Click **Next**.
 
 On the **Database Server** tab, fill out the following fields:
 
-- **Name** - LabDB_\ *Initials*\ _Clone
+- **Name** - *Initials*\_LabDB_Clone
 - **Description** - (Optional) Description
 - **Password** - techX2019!
 - **Database Parameter Profile** - DEFAULT_POSTGRES_PARAMS
@@ -382,11 +389,11 @@ Refreshing A Cloned Database
 
 The ability to easily refresh a cloned database using new data from the source database improves development, test, and other use cases by ensuring they have access to new and relevant data. In this section you will add a new table for storing data to your source database, and refresh the existing clone.
 
-Using your **Tools VM**, open **pgAdmin**.
+Using *Initials*\ **-Windows-ToolsVM**, open **pgAdmin**.
 
 Select your source database (**NOT** the cloned database), and from the menu bar click **Tools > Query Tool**.
 
-Start pgAdmin, select your source database instance, go to the Tools menu and select Query Tool
+Start pgAdmin, select your source database instance, go to the **Tools** menu and select **Query Tool**.
 
 .. figure:: images/25a.png
 
@@ -473,7 +480,7 @@ Takeaways
 
 What are the key things you should know about **Nutanix Era**?
 
-- Era 1.0 supports Oracle, SQL Server, and PostgreSQL. MySQL will be supported in an upcoming release.
+- Era supports Oracle, SQL Server, PostgreSQL, and MariaDB.
 
 - Era supports One Click operations for registering, provisioning, cloning and refreshing supported databases.
 
@@ -494,14 +501,30 @@ Getting Connected
 
 Have a question about **Nutanix Era**? Please reach out to the resources below:
 
-+---------------------------------------------------------------------------------+
-|  Era Product Contacts                                                           |
-+================================+================================================+
-|  Slack Channel                 |  #era                                          |
-+--------------------------------+------------------------------------------------+
-|  Product Manager               |  Jeremy Launier, jeremy.launier@nutanix.com    |
-+--------------------------------+------------------------------------------------+
-|  Product Marketing Manager     |  Maryam Sanglaji, maryam.sanglaji@nutanix.com  |
-+--------------------------------+------------------------------------------------+
-|  Technical Marketing Engineer  |  Mike McGhee, michael.mcghee@nutanix.com       |
-+--------------------------------+------------------------------------------------+
++---------------------------------------------------------------------------------------------------+
+|  Era Product Contacts                                                                             |
++============================================+======================================================+
+|  Slack Channel                             |  #era                                                |
++--------------------------------------------+------------------------------------------------------+
+|  Product Manager                           |  Jeremy Launier, jeremy.launier@nutanix.com          |
++--------------------------------------------+------------------------------------------------------+
+|  Product Marketing Manager                 |  Maryam Sanglaji, maryam.sanglaji@nutanix.com        |
++--------------------------------------------+------------------------------------------------------+
+|  Technical Marketing Engineer              |  Mike McGhee, michael.mcghee@nutanix.com             |
++--------------------------------------------+------------------------------------------------------+
+|  Engineering                               |                                                      |
++--------------------------------------------+------------------------------------------------------+
+|  Solutions Architect Americas - Era        |  Murali Sriram, murali.sriram@nutanix.com            |
++--------------------------------------------+------------------------------------------------------+
+|  Solutions Architect Americas - Oracle/Era |  Mandar Surkund, mandar.surkund@nutanix.com          |
++--------------------------------------------+------------------------------------------------------+
+|  Solutions Architect Americas - SQL/Era    |  Mike Matthews, mike.matthews@nutanix.com            |
++--------------------------------------------+------------------------------------------------------+
+|  Solutions Architect APAC - Oracle/Era     |  Kim Hock Cheok, kimhock.cheok@nutanix.com           |
++--------------------------------------------+------------------------------------------------------+
+|  Solutions Architect APAC - Oracle/Era     |  Predee Kajonpai, predee.kajonpa@nutanix.com         |
++--------------------------------------------+------------------------------------------------------+
+|  Solutions Architect EMEA - Oracle/Era     |  Olivier Parcollet, olivier.parcollet@nutanix.com    |
++--------------------------------------------+------------------------------------------------------+
+|  Solutions Architect EMEA - Oracle/Era     |  Karsten Zimmermann, karsten.zimmermann@nutanix.com  |
++--------------------------------------------+------------------------------------------------------+

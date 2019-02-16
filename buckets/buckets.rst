@@ -1,8 +1,8 @@
 .. _buckets:
 
--------
+---------------
 Buckets
--------
+---------------
 
 *The estimated time to complete this lab is 60 minutes.*
 
@@ -15,11 +15,11 @@ Overview
 
 Data is growing faster than ever before, and much of the new data generated every second is unstructured. Video, backups, images, and e-mail archives are all examples of unstructured data that can cause issues at scale using traditional file and block storage solutions.
 
-Unlike file or block storage, object storage is a data storage architecture designed for unstructured data at the petabyte scale. Object storage manages data as objects, where each object contains the data itself, a variable amount of metadata, and a globally unique identifier.
+Unlike file or block storage, object storage is a data storage architecture designed for unstructured data at the petabyte scale. Object storage manages data as objects, where each object contains the data itself, a variable amount of metadata, and a globally unique identifier. There is no filesystem overhead as there is in block and file storage, so it can be easily scaled out at a global level.
 
-Buckets is a scalable, S3-compatible, object storage solution.
+Nutanix Buckets is an S3-compatible object storage solution that leverages the underlying Nutanix storage fabric which allows it to benefit from features such as encryption, compression, and erasure coding (EC-X).
 
-Buckets allows users to store petabytes of unstructured data on the Nutanix platform, with support for features such as WORM and object versioning that are required for regulatory compliance, and easy integration with 3rd party backup software and S3-compatible applications.
+Buckets allows users to store petabytes of unstructured data on the Nutanix platform, with support for features such as WORM (write once, read many) and object versioning that are required for regulatory compliance, and easy integration with 3rd party backup software and S3-compatible applications.
 
 **What are the use cases for Nutanix Buckets?**
 
@@ -41,13 +41,16 @@ Buckets allows users to store petabytes of unstructured data on the Nutanix plat
 Lab Setup
 +++++++++
 
-This lab requires BOTH the Windows-ToolsVM and the Linux-ToolsVM.
+This lab requires applications provisioned as part of the :ref:`windows_tools_vm` **and** :ref:`linux_tools_vm`.
 
-If you have not yet deployed these VMs, see the steps linked below before proceeding with the lab.
+If you have not yet deployed **both** of these VMs, see the linked steps before proceeding with the lab.
 
-:ref:`windows_tools_vm`
+Getting Familiar with Object Storage
+++++++++++++++++++++++++++++++++++++
 
-:ref:`linux_tools_vm`
+An object store is a repository for storing objects. Objects are stored in a flat hierarchy and made up of only 3 attributes - an unique key or identifier, the data itself, and an expandable amount of metadata.  An object store is a single global namespace on which buckets can be created. A bucket can be thought of as similar to a folder in a file storage environment. However, object storage and file storage are very different. Here are some ways object storage and file storage differ.
+
+.. figure:: images/buckets_00.png
 
 Getting Familiar with the Nutanix Buckets Environment
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -83,31 +86,57 @@ We are using a small deployment, the deployed VMs are listed in the following ta
 +================+===============================+===============+=============+
 |  k8s-master    |  Kubernetes Master            |  2 / 2        |  8 GiB      |
 +----------------+-------------------------------+---------------+-------------+
-|  k8s-worker-0  |  Object Controller            |  6 / 1        |  13.02 GiB  |
+|  k8s-worker-0  |  Kubernetes Worker            |  6 / 1        |  13.02 GiB  |
 +----------------+-------------------------------+---------------+-------------+
-|  k8s-worker-1  |  Object Controller            |  6 / 1        |  13.02  GiB |
+|  k8s-worker-1  |  Kubernetes Worker            |  6 / 1        |  13.02  GiB |
 +----------------+-------------------------------+---------------+-------------+
-|  k8s-worker-2  |  Object Controller            |  6 / 1        |  13.02  GiB |
+|  k8s-worker-2  |  Kubernetes Worker            |  6 / 1        |  13.02  GiB |
 +----------------+-------------------------------+---------------+-------------+
-|  envoy-1       |  Load Balancer                |  2 / 2        |  4 GiB      |
+|  envoy-1       |  Load Balancer / Endpoint     |  2 / 2        |  4 GiB      |
 +----------------+-------------------------------+---------------+-------------+
-|  etcd-0        |  Distributed metadata server  |  2 / 1        |  4 GiB      |
+|  etcd-0        |  Kubernetes Metadata          |  2 / 1        |  4 GiB      |
 +----------------+-------------------------------+---------------+-------------+
-|  etcd-1        |  Distributed metadata server  |  2 / 1        |  4 GiB      |
+|  etcd-1        |  Kubernetes Metadata          |  2 / 1        |  4 GiB      |
 +----------------+-------------------------------+---------------+-------------+
-|  etcd-2        |  Distributed metadata server  |  2 / 1        |  4 GiB      |
+|  etcd-2        |  Kubernetes Metadata          |  2 / 1        |  4 GiB      |
 +----------------+-------------------------------+---------------+-------------+
 
-<What does any of this mean? Why does it deploy all of these VMs? What services are actually running on those k8s worker VMs? This would be a good opportunity to highlight the benefit of being deployed as part of MSP. If there's a diagram to illustrate how all of these things talk to one another that would be even better.>
+All of these VMs are deployed by the Microservices Platform which is built on Kubernetes technology. The service that controls the MSP runs on Prism Central. Note that the VM layout will change in GA - some services (such as etcd) which are currently running as VMs will become containerized and be built into the worker VMs themselves.
+
+The envoy VM is the load balancer and endpoint. The IP address of this VM is the IP used by clients to access the object store. It is the first point of entry for an object request (for example, an S3 GET or PUT). It then forwards this request to one of the worker VMs (specifically, the S3 adapter service running as part of the object-controller pod).
+
+The master VM is the Kubernetes master, which provides the control plane for the Kubernetes cluster. In GA the architecture is moving to a multi-master format, and will be distributed across the worker nodes.
+
+The worker VMs run the object store components. This includes:
+
+- S3 adapter (minio-based) - this translates the S3 language into our internal language.
+- Object controller - this handles all the I/O. Think of it as like Stargate in AOS.
+- Metadata service - this handles the metadata for the object storage cluster. Think of it as like Medusa/Cassandra in AOS.
+- Atlas service - this handles garbage collection. Think of it as like Curator in AOS.
+- UI gateway - this is the endpoint for all UI requests, handles bucket management, stats display, user management interface, etc.
+- Zookeeper - this manages the configuration for the object storage cluster.
+- IAM service - handles user authentication for accessing buckets.
+
+The etcd VMs are a Kubernetes-level distributed key-value store. This stores and replicates the Kubernetes cluster level metadata, including networks, pod names & ID numbers, storage volumes, etc. As mentioned before, these services will be containerized in GA and will be running within the worker VMs.
+
+.. note::
+
+  In GA, the VM layout will be drastically different, consisting of simply 3 or more Service VMs (which will encompass everything currently in the worker VMs, plus etcd and the Kubernetes master) and 1 or more load balancer (envoy) VMs.
 
 Walk Through the Object Store Deployment
 ........................................
 
-In this exercise you will walk through the steps of creating an Object Store. <What is an object store? Why would I have multiple object stores?>
+In this exercise you will walk through the steps of creating an Object Store.
+
+.. note::
+
+  In many use cases only a single object store is required. If global namespace isolation is required, for example a Service Provider is providing object storage to multiple customers from the same infrastructure, then multiple object stores can be created.
 
 .. note::
 
   In the Tech Summit Buckets environment, you will **not** be able to actually deploy the object store, but you will be able to see the workflow and how simple it is for users to deploy an object store.
+
+  Note that the interface and workflow will be slightly different in GA.
 
 In **Prism Central > Explore > Nutanix Buckets**, click **Create Object Store**.
 
@@ -135,7 +164,7 @@ The chosen option determines how many object controllers will be deployed and th
 
   Note that although a storage capacity is defined here, it is not a hard limit, and the customer is limited only by their license and the storage capacity of the cluster.
 
-Select the different options (Small, Medium, Large) and notice how the Resource numbers change. <What resources are these actually changing? The k8s worker VMs?>
+Select the different options (Small, Medium, Large) and notice how the Resource numbers change. These are the resources that will be applied across the K8s worker VMs. For example, specifying 20vCPU and 40GB of RAM across 3 workers, comes to 6 vCPU and 13 GB of RAM per worker.
 
 Custom values are also allowed.
 
@@ -158,7 +187,7 @@ Close the **Create Object Store** wizard.
 Walk through Bucket Creation and Policies
 .........................................
 
-<What is a bucket? How does it differentiate from an object store?>
+A bucket is a sub-repository within an object store which can have policies applied to it, such as versioning, WORM, etc. By default a newly created bucket is a private resource to the creator. The creator of the bucket by default has read/write permissions, and can grant permissions to other users.
 
 Click the **Name** of the existing Object Store to manage it.
 
@@ -196,7 +225,7 @@ User creation will be in the UI in Buckets GA. In the early access software, we 
 
 In this exercise you will create two users that will be used throughout the lab.
 
-Login to the *Initials*-**Linux-ToolsVM** via SSH using the following credentials:
+Login to the *Initials*\ **-Linux-ToolsVM** via SSH using the following credentials:
 
 - **Username** - root
 - **password** - nutanix/4u
@@ -237,7 +266,7 @@ You will also use the built-in Buckets Object Browser, which is an easy way to t
 Download the Sample Images
 ..........................
 
-Login to *Initials*-**Windows-ToolsVM** via RDP using the following credentials:
+Login to *Initials*\ **-Windows-ToolsVM** via RDP using the following credentials:
 
 - **Username** - NTNXLAB\\Administrator
 - **password** - nutanix/4u
@@ -253,7 +282,7 @@ Once the download is complete, open the file to launch **Cyberduck** and add the
 
 .. note::
 
-  Buckets does not currently support HTTPS connections. <Will GA?>
+  Buckets does not currently support HTTPS connections, but this will be supported at GA.
 
 Close the **s3.amazonaws.com** default profile, and click on **Open Connection**.
 
@@ -325,11 +354,11 @@ Select your bucket and and click **Get Info**.
 
 .. figure:: images/buckets_12.png
 
-Under ther **S3** tab, select **Bucket Versioning** and then close the window. This is equivalent to enabling versioning through Prism.
+Under the **S3** tab, select **Bucket Versioning** and then close the window. This is equivalent to enabling versioning through Prism.
 
 .. figure:: images/buckets_13.png
 
-Leave the Cyberduck connection open, and open Notepad in your Tools VM.
+Leave the Cyberduck connection open, and open Notepad in *Initials*\ **-Windows-ToolsVM**.
 
 Type “version 1.0” in Notepad, then save the file.
 
@@ -378,7 +407,7 @@ Grant Access to Another Bucket
 
 Access policy configuration will be in the UI in Buckets GA. In the early access software, we will use the following Linux command line ``mc`` tool to modify access to buckets.
 
-From the *initials*-**Linux-ToolsVM**, run the following command to authenticate **MC** and allow the tool to configure the Object Store instance:
+From the *Initials*\ **-Linux-ToolsVM**, run the following command to authenticate **MC** and allow the tool to configure the Object Store instance:
 
 .. code-block:: bash
 
@@ -566,7 +595,7 @@ Listing and Creating Buckets with Python
 
 In this exercise, you will modify a sample script to match your environment, which will list all the buckets available to that user. You will then modify the script to create a new bucket using the existing S3 connection.
 
-From the *initials*-**Linux-ToolsVM**, run ``vi list-buckets.py`` and paste in the script below. You will need to modify the **endpoint_ip**, **access_key_id**, and **secret_access_key** values before saving the script.
+From the *Initials*\ **-Linux-ToolsVM**, run ``vi list-buckets.py`` and paste in the script below. You will need to modify the **endpoint_ip**, **access_key_id**, and **secret_access_key** values before saving the script.
 
 .. note::
 
@@ -607,7 +636,7 @@ Using the previous script as a base, and the `Boto 3 documentation <https://boto
 Uploading Multiple Files to Buckets with Python
 ...............................................
 
-From the *initials*-**Linux-ToolsVM**, run the following to create 100 1KB files to be used as sample data for uploading:
+From the *Initials*\ **-Linux-ToolsVM**, run the following to create 100 1KB files to be used as sample data for uploading:
 
 .. code-block:: bash
 
@@ -664,14 +693,33 @@ Similar S3 SDKs are available for languages including Java, JavaScript, Ruby, Go
 Takeaways
 +++++++++
 
-- stuff
+What are the key things you should know about **Nutanix Buckets**?
 
-- goes
+- Nutanix Buckets provides a simple and scalable S3-compatible object storage solution, optimized for DevOps, Long Term Retention and Backup Target use cases.
 
-- here
+- The target for Buckets GA is end of March and will require 5.11.
 
-Getting Engaged with the Product Team
-+++++++++++++++++++++++++++++++++++++
+- Buckets will support AHV at GA. ESXi support is on the roadmap.
+
+- A 2TB Buckets license is included with every AOS cluster. After that, it is licensed by used capacity (as opposed to number of nodes).
+
+- Buckets will be enabled and deployed from Prism Central. Upgrades will be done via Lifecycle Manager (LCM).
+
+References
+++++++++++
+
+Right-click to open in a new tab.
+
+- `Buckets FAQ <https://docs.google.com/document/d/1xEkrB5EOGu5-8yCB7EUYuy95TTgnuBE2s2DWWmVRJw4/edit?usp=sharing>`_
+- `Buckets Admin Guide (Draft) <https://docs.google.com/document/d/1l0fekqhDH-q3snlBmogfEAOg2MVoGMveiNa6fw6VOeM/edit?usp=sharing>`_
+- `Buckets Tech Note (Draft) <https://docs.google.com/document/d/1jYud1z6JV1TwmJj5gon4Cs-Syq7J4jBn3BhvWfSCBeU/edit?usp=sharing>`_
+- `SE Deck <https://nutanixinc-my.sharepoint.com/:p:/g/personal/priyadarshi_nutanix_com/EZof9glUu31Jlu6lG1JAUVUBxSrmYBNcjaeiCmTz8iXSyQ?e=eAvhB5>`_
+
+
+Getting Connected
++++++++++++++++++
+
+Have a question about **Nutanix Buckets**? Please reach out to the resources below:
 
 +---------------------------------------------------------------------------------------------+
 |  Buckets Product Contacts                                                                   |
@@ -682,5 +730,11 @@ Getting Engaged with the Product Team
 +--------------------------------+------------------------------------------------------------+
 |  Product Marketing Manager     |  Krishnan Badrinarayanan, krishnan.badrinaraya@nutanix.com |
 +--------------------------------+------------------------------------------------------------+
-|  Technical Marketing Engineer  |  Sharon Santana, sharon.santana@nutanix.com                |
+|  Technical Marketing Engineer  |  Laura Jordana, laura@nutanix.com                          |
++--------------------------------+------------------------------------------------------------+
+|  SME                           |  Karan Gupta, karan.gupta@nutanix.com                      |
++--------------------------------+------------------------------------------------------------+
+|  SME                           |  Roger Liao, roger.liao@nutanix.com                        |
++--------------------------------+------------------------------------------------------------+
+|  SME                           |  Dheer Moghe, dheer.moghe@nutanix.com                      |
 +--------------------------------+------------------------------------------------------------+
