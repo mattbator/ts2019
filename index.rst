@@ -22,6 +22,7 @@
   karbon/karbon
   xiiot/xiiot
   xtract_aws/xtract_aws
+  frame/frame
 
 .. toctree::
   :maxdepth: 2
