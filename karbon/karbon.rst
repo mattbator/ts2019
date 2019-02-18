@@ -19,7 +19,7 @@ Karbon provides a consumer-grade experience for delivering Kubernetes on-prem pr
 
 **In this lab you will deploy a Kubernetes cluster using Karbon and then deploy multiple containers, referred to as Kubernetes pods, to run a sample application.**
 
-If you already have an understanding of containers, Kubernetes, challenges, and use cases, jump to `Create a Karbon Kubernetes Cluster`_.
+If you already have an understanding of containers, Kubernetes, challenges, and use cases, jump to `Create a Karbon Cluster`_.
 
 What are Containers?
 ....................
