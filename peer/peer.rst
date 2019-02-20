@@ -577,6 +577,8 @@ Takeaways
 
 - The latest Peer prerequisities for Nutanix Files can be found `here <https://kb.peersoftware.com/tb/nutanix-files-prerequisites>`_.
 
+- •	NFR licenses are available for lab environments. Reach out via the #_peer_software_ext Slack channel to request one.
+
 - <...Anything else in terms of value prop/features/spotting opportunities we want to summarize?...>
 
 Getting Connected
