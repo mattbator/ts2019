@@ -299,11 +299,7 @@ In PowerShell, change directories to **NutanixCloudNativeLab-master** and run th
   kubectl apply -f buckets\
   kubectl apply -f django-jet\
 
-Next run the following command to verify your pods are up and running:
-
-.. code-block:: bash
-
-  kubectl get pods
+Run ``kubectl get pods`` to verify your pods are up and running.
 
 After a couple of minutes, assuming everything is working properly, you should see the **oscar-django-migrations-xxxxx** pod change status from **Running** to **Completed**.
 
@@ -312,6 +308,15 @@ After a couple of minutes, assuming everything is working properly, you should s
   If this does not happen, you can troubleshoot the issue by running the following command (substituting in your unique 5 digit key instead of xxxxx):
 
   ``kubectl logs oscar-django-migrations-xxxxx``
+
+  If you need to stop the deployment, run the following commands to clean up your pods:
+
+  .. code-block:: bash
+
+    kubectl delete -f django-jet\
+    kubectl delete -f era\
+    kubectl delete -f buckets\
+    kubectl delete --all pods --namespace=default
 
 Accessing the Application
 ..........................
@@ -337,11 +342,26 @@ You should now be able to open a new browser tab and see the online store we cre
 Takeaways
 +++++++++
 
-- Nutanix Karbon, Era, and Buckets can be combined to make a full Cloud Native stack
+- Nutanix Karbon, Era, and Buckets can be combined to deliver a stack designed for Cloud Native applications.
 
-- Cloud Native applications help reduce infrastructure silos and the time it takes to release new application features
+- Epoch can be introduced to provide application monitoring without requiring code instrumentation in the Oscar application.
 
-- Nutanix Cloud Native can easily be integrated into 3rd party tools like Jenkins to create a CI/CD pipeline
+- Cloud Native applications help reduce infrastructure silos and the time it takes to release new application features.
+
+- Nutanix Cloud Native can easily be integrated into 3rd party tools like Jenkins to create a CI/CD pipeline.
+
+Cleanup
++++++++
+
+.. raw:: html
+
+  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
+
+All Era and Karbon VMs may be removed after completing this lab.
+
+There is an **optional** component within the :ref:`epoch` lab to explore Kubernetes monitoring which would still require your Karbon cluster.
+
+There is an **optional** component within the :ref:`era` lab to explore Era automation which would still require your Era VM, but no other existing databases provisioned or cloned by Era.
 
 Getting Connected
 +++++++++++++++++
