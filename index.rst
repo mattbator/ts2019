@@ -30,6 +30,7 @@
   :name: _opt_201_labs
   :hidden:
 
+  apis/apis
   calm_win/calm_win
 ..  cloud_native_lab/cloud_native_lab
 
@@ -79,6 +80,13 @@ Announcements
 
   <strong><font color="red">Pay attention to this space for key event updates!</font></strong>
 
+.. _validation:
+
+Get Help & Win Prizes!
+++++++++++++++++++++++
+
+<Require some basic instruction/screencaps for hand raising widget>
+
 .. _clusterassignments:
 
 Cluster Assignments
@@ -88,16 +96,18 @@ Refer to **YOUR NAME** in the table below for all critical environmental informa
 
 .. raw:: html
 
-  <iframe src=https://docs.google.com/a/nutanix.com/spreadsheets/d/e/2PACX-1vR3mA1Rs5VRHlxJhzsm0moXzmfUJqbu3fikaYsXu_X8yF8jXUnCG6mojoxoiFzJrbnubcSxaBf6euJQ/pubhtml?gid=0&amp;single=false&amp;widget=false&amp;chrome=false&amp;headers=false&amp;range=a1:l41 style="position: relative; height: 300px; width: 98%; border: none"></iframe>
+  <iframe width="99%" height="450" frameborder="0" scrolling="no" src="https://nutanixinc-my.sharepoint.com/:x:/g/personal/matthew_bator_nutanix_com/EZ1ixb2RUHlBhZSq373eJLEBYmpuiQ6R1Bbn8PrHbsFKbw?e=f9qRHk&action=embedview&Item='Sheet1'!A1%3AP565&wdDownloadButton=True&wdInConfigurator=True"></iframe>
 
-`Click here <https://docs.google.com/a/nutanix.com/spreadsheets/d/e/2PACX-1vR3mA1Rs5VRHlxJhzsm0moXzmfUJqbu3fikaYsXu_X8yF8jXUnCG6mojoxoiFzJrbnubcSxaBf6euJQ/pubhtml>`_ to open the assignments spreadsheet in a new tab.
+.. note::
+
+  The table above can be filtered in place to display only your assignment or can be downloaded and viewed locally.
 
 .. _clusteraccess:
 
 Cluster Access
 ++++++++++++++
 
-Clusters used for both the **Hands on Learning** and **Field Focussed Hackathon** tracks run within the Hosted POC environment, hosted in the Nutanix PHX1 datacenter.
+Clusters used for both the **Hands on Learning** and **Field Focused Hackathon** tracks run within the Hosted POC environment, hosted in the Nutanix PHX and RTP datacenters.
 
 In order to access these resources you must be connected to one of the (2) VPN options listed below. Connection to a virtual desktop environment **is not necessary**.
 
@@ -123,9 +133,9 @@ Connect using your Okta credentials.
 Partners
 ........
 
-Refer to :ref:`clusterassignments` for your Lab VPN username and password.
+Refer to :ref:`clusterassignments` for your **Lab VPN Username**.
 
-Log in to https://lab-vpn.nutanix.com using the provided credentials.
+Log in to https://xlv-uswest1.nutanix.com using the provided credentials.
 
 Under **Client Application Sessions**, click **Start** to the right of **Pulse Secure** to download the client.
 
@@ -135,7 +145,7 @@ Add a connection:
 
 - **Type** - Policy Secure (UAC) or Connection Server
 - **Name** - HPOC VPN
-- **Server URL** - lab-vpn.nutanix.com
+- **Server URL** - https://xlv-uswest1.nutanix.com
 
 Connect using the provided credentials.
 
@@ -196,7 +206,7 @@ All disk images required to complete the labs have been uploaded to the Image Se
      - Era 1.0.1 Disk Image
    * - **xtract-vm-2.0.3.qcow2**
      - Xtract for VMs 2.0.3 Disk Image
-   * - **hycu-3.5.0-6138.qcow2**
+   * - **hycu-3.5.0-6253.qcow2**
      - HYCU 3.5.0 Appliance Disk Image
    * - **VeeamAvailability_1.0.457.vmdk**
      - Veeam Backup Proxy for AHV 1.0 Disk Image
@@ -206,7 +216,7 @@ All disk images required to complete the labs have been uploaded to the Image Se
 Credentials
 ...........
 
-The lab guides will explicitly share any unique credentials, the table
+The lab guides will explicitly share any unique credentials, the table below contains common credentials used throughout the labs:
 
 .. list-table::
   :widths: 33 33 33
@@ -217,16 +227,16 @@ The lab guides will explicitly share any unique credentials, the table
     - Password
   * - **Prism Element**
     - admin
-    - TBD
+    - techX2019
   * - **Prism Central**
     - admin
-    - TBD
+    - techX2019!
   * - **Controller VMs**
     - admin
-    - TBD
+    - techX2019!
   * - **Prism Central VM**
     - admin
-    - TBD
+    - techX2019!
   * - **NTNXLAB Domain**
     - NTNXLAB\\Administrator
     - nutanix/4u
@@ -261,25 +271,11 @@ The following virtual networks have been pre-configured for each cluster:
 
 .. raw:: html
 
-  <strong><font color="red">With 5-6 participants sharing each physical cluster, there are only ~30 IP addresses available per participant. This means you may need to clean up VMs from previous labs prior to completing additional labs.</font></strong>
+  <strong><font color="red">With 5-6 participants sharing each physical cluster, there is limited system memory and ~30 IP addresses available per participant. Refer to the CLEANUP section at the end of each lab for direction on VMs that can be removed before proceeding to your next lab. THANK YOU!</font></strong>
 
-Running on BigSwitch Networking
-...............................
+..  Hackathon Voting
+  ++++++++++++++++
 
-With the recent migration to Nutanix's new PHX1 datacenter, all Hosted POC resources used for GTS leverage the Nutanix corporate IT management network.
+  Following Hackathon presentations on Thursday morning, all Global Tech Summit attendees will vote to determine the grand prize winners. In order to vote, you will need to create an account `here <https://nutanixgts19.hackerearth.com>`_.
 
-<Details on PHX1/BigSwitch>
-
-.. _validation:
-
-Get Help & Win Prizes!
-++++++++++++++++++++++
-
-<Require some basic instruction/screencaps for hand raising widget>
-
-Hackathon Voting
-++++++++++++++++
-
-Following Hackathon presentations on Thursday morning, all Global Tech Summit attendees will vote to determine the grand prize winners. In order to vote, you will need to create an account `here <https://nutanixgts19.hackerearth.com>`_.
-
-*Voting instructions forthcoming.*
+  *Voting instructions forthcoming.*
