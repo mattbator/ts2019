@@ -33,6 +33,8 @@ After completing both labs you should have the following already deployed on you
 - *Initials*-**Windows-ToolsVM** VM
   - ``kubectl`` configured with **kubeconfig** file from *Initials*-**karbon**
 
+The lab will leverage an *existing* Buckets Object Store deployment accessible from the following cluster: https://10.42.71.39:9440
+
 Deploying the App Database
 ++++++++++++++++++++++++++
 
@@ -96,7 +98,7 @@ Creating the Object Storage Bucket
 
 In this exercise you will create an object storage bucket utilizing Nutanix Buckets. This bucket will be used to store all of our web app’s images.
 
-Open \https://*BUCKETS-CLUSTER-PC-IP:8443*/ in a new browser tab and log in using these credentials:
+Open https://10.42.71.42:9440/ in a new browser tab and log in using the following credentials to access the *shared* Nutanix Buckets deployment:
 
 - **Username** - admin
 - **Password** - Nutanix.123
@@ -123,7 +125,7 @@ Record the **Access Key** associated with your e-mail.
 
 .. figure:: images/buckets_add_people5.png
 
-Log in to the Buckets Object Store Browser at \https://*BUCKETS-ENDPOINT-IP*:7200/ using your **Access Key** and **Secret Key**.
+Log in to the Buckets Object Store Browser for the **techsummit2019 Object Store** at https://10.42.71.42:7200/ using your **Access Key** and **Secret Key**.
 
 .. figure:: images/buckets_add_people6.png
 
@@ -231,7 +233,7 @@ This file sets various environment variables in our web application.
 
 Update the following:
 
-- **S3_ENDPOINT_URL** - https://Buckets-IP:7200/
+- **S3_ENDPOINT_URL** - https://10.42.71.42:7200/
 - **STATIC_BUCKET** -  *initialsLowerCase*-oscarstatic **(ALL LOWER CASE)**
 - **DATABASE_NAME** - *initialsLowerCase*_oscar_django **(ALL LOWER CASE)**
 
@@ -329,15 +331,11 @@ In your Terminal or PowerShell window run the following command two commands to 
 
   kubectl get svc
 
-Using this information, we can access our application by combining one of the Internal IPs and the 30000 port number of the **oscar-django-service**.
+Using this information, we can access our application by combining one of the Internal IPs and the 3xxxx port number of the **oscar-django-service**.
 
-Run the following command:
+Open \http://*WORKER-VM-IP:OSCAR-DJANGO-SERVICE-PORT*/ in a new browser tab to access and use the online store provisioned leveraging Karbon, Era, and Buckets.
 
-.. code-block:: bash
-
-  Start "http://<InternalIP>:3XXXX"
-
-You should now be able to open a new browser tab and see the online store we created.
+.. figure:: images/oscar-ncn.png
 
 Takeaways
 +++++++++
