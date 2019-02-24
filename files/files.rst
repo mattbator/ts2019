@@ -8,7 +8,7 @@ Files
 
 .. raw:: html
 
-  <iframe src="https://drive.google.com/file/d/1sU4_1GPVTNGJwNDoy0kB04r-vz4-9Thq/preview" width="720" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/0yWcTctwD3Y?rel=0&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Overview
 ++++++++
@@ -427,10 +427,6 @@ What are the key things you should know about **Nutanix Files**?
 
 - Files can scale up and scale out with One Click performance optimization.
 
-- Files is a standalone license, <some background on the current Files licensing model>
-
-- <Any others?>
-
 Getting Connected
 +++++++++++++++++
 
@@ -439,20 +435,18 @@ Have a question about **Nutanix Files**? Please reach out to the resources below
 +---------------------------------------------------------------------------------+
 |  Files Product Contacts                                                         |
 +================================+================================================+
-|  Slack Channel                 |  #files                                        |
+|  Slack Channels                |  #nutanix-files, #new_files_licensing          |
 +--------------------------------+------------------------------------------------+
-|  Product Manager               |                                                |
+|  Product Manager               |  Vikram Gupta, vikram.gupta@nutanix.com        |
 +--------------------------------+------------------------------------------------+
-|  Product Marketing Manager     |                                                |
+|  Product Marketing Manager     |  Devon Helms, devon.helms@nutanix.com          |
 +--------------------------------+------------------------------------------------+
-|  Technical Marketing Engineer  |                                                |
+|  Technical Marketing Engineer  |  Mike McGhee, mike.mcghee@nutanix.com          |
 +--------------------------------+------------------------------------------------+
-|  Founders Team Lead            |                                                |
-+--------------------------------+------------------------------------------------+
-
-<Any other SMEs that should be listed here?>
 
 Additional Resources
 ++++++++++++++++++++
 
-<links for Sizing docs, links to case studies, etc.?>
+- `Nutanix Files Sizing Guide <http://download.nutanix.com/solutionsDocs/TN-2066-Nutanix-Files-Sizing-Guide.pdf>`_
+- `Nutanix Files Sizing Video (Employee Link) <https://mindtickle.app.link/Ooah0gdXTT>`_
+- `Nutanix Files Sizing Video (Partner Link) <https://mindtickle.app.link/7XrD1H6yzU>`_

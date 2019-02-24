@@ -6,10 +6,6 @@ Xi Epoch
 
 *The estimated time to complete this lab is 60 minutes.*
 
-.. raw:: html
-
-  <iframe src="https://drive.google.com/file/d/1sU4_1GPVTNGJwNDoy0kB04r-vz4-9Thq/preview" width="720" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
 Overview
 ++++++++
 
