@@ -56,9 +56,6 @@ Install the software needed by running the following commands:
   npm install -g express
   pip install -U pip
   pip install boto3
-  curl http://10.4.64.11:8080/Users/nutanix_buckets/ea/builds/18112018/tools/iam_util -o iam_util
-  curl http://10.4.64.11:8080/Users/nutanix_buckets/ea/builds/18112018/tools/mc -o mc
-  chmod +x iam_util mc
 
 Configuring NTP
 ...............
