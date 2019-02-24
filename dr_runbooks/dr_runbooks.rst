@@ -349,6 +349,15 @@ What are the key things you should know about **Nutanix Leap DR Runbooks**?
 
 - `Best Practice Guide <https://portal.nutanix.com/#/page/solutions/details?targetId=BP-2005_Data_Protection:BP-2005_Data_Protection - best practice>`_
 
+Cleanup
++++++++
+
+.. raw:: html
+
+  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
+
+Ensure your **Wordpress** VMs have been powered off or removed from both the primary and secondary clusters.
+
 Getting Connected
 +++++++++++++++++
 

@@ -467,10 +467,56 @@ Can you build a version of this Blueprint that leverages an Era clone of your SQ
 Takeaways
 +++++++++
 
-- Stuff
+- Calm provides the same application deployment and lifecycle management benefits for Windows workloads as it does for Linux workloads.
 
-- Goes
+- Calm can natively execute remote PowerShell scripts on Windows endpoints without the need for a Windows-based proxy.
 
-- Here
+Cleanup
++++++++
 
-- Integration with other apps - leveraging Era, eScript, and an existing VM service
+.. raw:: html
+
+  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
+
+If you do **NOT** intend to complete any of the *Optional* sections above, delete your application deployment in Calm.
+
+Getting Connected
++++++++++++++++++
+
+Have a question about **Nutanix Calm**? Please reach out to the resources below:
+
++---------------------------------------------------------------------------------+
+|  Calm Product Contacts                                                          |
++================================+================================================+
+|  Slack Channel                 |  #Calm                                         |
++--------------------------------+------------------------------------------------+
+|  Product Manager               |  Jasnoor Gill, jasnoor.gill@nutanix.com        |
++--------------------------------+------------------------------------------------+
+|  Product Marketing Manager     |  Chris Brown, christopher.brown@nutanix.com    |
++--------------------------------+------------------------------------------------+
+|  Technical Marketing Engineer  |  Michael Haigh, michael.haigh@nutanix.com      |
++--------------------------------+------------------------------------------------+
+|  Solutions Architect           |  Ben Peterson, bp@nutanix.com                  |
++--------------------------------+------------------------------------------------+
+|  Solutions Architect           |  Mark Lavi, mark.lavi@nutanix.com              |
++--------------------------------+------------------------------------------------+
+|  Solutions Architect           |  Andy Schmid, andy.schmid@nutanix.com          |
++--------------------------------+------------------------------------------------+
+|  Founders Team Manager         |  Mike Masterson, mike.masterson@nutanix.com    |
++--------------------------------+------------------------------------------------+
+|  Founders Team                 |  Akbar Aziz, akbar.aziz@nutanix.com            |
++--------------------------------+------------------------------------------------+
+|  Founders Team                 |  David Roberts, dave.roberts@nutanix.com       |
++--------------------------------+------------------------------------------------+
+|  Founders Team                 |  Sachin Malhotra, sachin.malhotra@nutanix.com  |
++--------------------------------+------------------------------------------------+
+|  SME Americas                  |  Alex Lott, alex.lott@nutanix.com              |
++--------------------------------+------------------------------------------------+
+|  SME APAC                      |  Lei Ming Pan, leiming.pan@nutanix.com         |
++--------------------------------+------------------------------------------------+
+|  SME APAC                      |  Chris Rasmussen, crasmussen@nutanix.com       |
++--------------------------------+------------------------------------------------+
+|  SME EMEA                      |  Christophe Jauffret, christophe@nutanix.com   |
++--------------------------------+------------------------------------------------+
+|  SME EMEA                      |  Jose Gomez, jose.gomez@nutanix.com            |
++--------------------------------+------------------------------------------------+

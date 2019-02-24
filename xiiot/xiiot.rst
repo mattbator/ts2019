@@ -405,6 +405,15 @@ What are the key things you should know about **Nutanix Xi IoT**?
 
 - Here
 
+Cleanup
++++++++
+
+.. raw:: html
+
+  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
+
+Delete your *Initials* **-Edge** VM.
+
 Getting Connected
 +++++++++++++++++
 

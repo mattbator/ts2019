@@ -265,7 +265,7 @@ Click the Play, and examine the details.
 Reset VM Memory
 ...............
 
-Change your *Initials*\ **-Linux-ToolsVM** memory back to 2gb.
+Change your *Initials*\ **-Linux-ToolsVM** memory back to 2GB.
 
 Reduce CPU Capacity For A VM During A Maintenance Window
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -654,7 +654,7 @@ This lab will show how you can easily include 3rd party tools into the X-Play.
 
 We will using IFTTT as the example of the 3rd party tool to send a Slack message when an alert is detected. You can extend this use case to ServiceNow or other tools.
 
-Before we setup IFTTT, ensure your *initial*-**Linux-ToolsVM** has memory size of 2gb, and if not change it to 2GB (power off, update, and power on).
+Before we setup IFTTT, ensure your *initial*-**Linux-ToolsVM** has memory size of 2GB, and if not change it to 2GB (power off, update, and power on).
 
 If not still logged in, Login to the *Initials*\ **-Linux-ToolsVM** via ssh or Console session.
 
@@ -857,7 +857,7 @@ Click the Play, and examine the details.
 Reset VM Memory
 ...............
 
-Change your *Initials*\ **-Linux-ToolsVM** memory back to 2gb.
+Change your *Initials*\ **-Linux-ToolsVM** memory back to 2GB.
 
 Takeaways
 +++++++++
