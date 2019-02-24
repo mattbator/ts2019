@@ -270,7 +270,7 @@ Testing the Application
 
 From **Prism Central > Virtual Infrastructure > VMs**, note the IP address of your *Initials*\ **-HAPROXY-0...** and *Initials*\ **-MYSQL-0...** VMs.
 
-Launch the console for your *Initials*\ **-WinClient-0** VM.
+Launch the console for your *Initials*\ **-WinClient-0** VM. This Vm was provisioned as part of the Task Manager application blueprint.
 
 From the *Initials*\ **-WinClient-0** console open a browser and access \http://*HAPROXY-VM-IP*/.
 
