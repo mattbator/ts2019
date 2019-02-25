@@ -19,6 +19,13 @@ Traditionally, file storage has been yet another silo within IT, introducing unn
 
 .. _deploying_files:
 
+Lab Setup
++++++++++
+
+This lab requires applications provisioned as part of the :ref:`windows_tools_vm`.
+
+If you have not yet deployed this VM, see the linked steps before proceeding with the lab.
+
 Deploying Files
 +++++++++++++++
 
