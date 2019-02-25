@@ -73,7 +73,7 @@ Select the **Secondary - Managed** VLAN for the **Client Network**. Each Files V
 
   .. figure:: images/6.png
 
-Specify your cluster's **DC** VM IP (found in :ref:`stagingdetails`) as the **DNS Resolver IP** (e.g. 10.XX.YY.40).
+Specify your cluster's **DC** VM IP (found in :ref:`stagingdetails`) as the **DNS Resolver IP** (e.g. 10.XX.YY.40). Leave the default (cluster) NTP Server.
 
 .. note::
 
