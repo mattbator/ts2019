@@ -181,7 +181,7 @@ Click **Next**
 Select **+ Add Entities**
 
 - **Search Entities by**  - VM Name
-    - Add *DRDB1 - DRDB12 based on assignment*
+    - Add *Initials-DRDB1 - Initials-DRDB12 based on assignment*
     Select **Add**
 
 .. figure:: images/drrunbooks_07.png
@@ -193,7 +193,7 @@ Click **+ Add New Stage**
 Select **+ Add Entities**
 
 - **Search Entities by**  - VM Name
-    - Add *DRWeb1 - DRWeb12 based on assignment*
+    - Add *Initials-DRWeb1 - Initials-DRWeb12 based on assignment*
     Select **Add**
 
 .. note::
@@ -308,7 +308,7 @@ In **Prism Central** > select :fa:`bars` **> Virtual Infrastructure > VMs**.
 
 You can make sure that the DB and Web VMs are up.
 
-You can also go to the Wordpress url in your *Initials*-**Windows-ToolsVM**, http://drweb1.ntnxlab.local and check that the service is up.
+You can also go to the Wordpress url in your *Initials*-**Windows-ToolsVM**, \http://*Initials-DRWebName*.ntnxlab.local and check that the service is up.
 
 Fail Back to the Original AZ (PC)
 +++++++++++++++++++++++++++++++++
