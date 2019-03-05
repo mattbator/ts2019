@@ -6,6 +6,9 @@ Xi Frame
 
 *The estimated time to complete this lab is 60 minutes.*
 
+.. raw:: html
+
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/01AVwtFeX9w?rel=0&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Overview
 ++++++++
@@ -335,6 +338,17 @@ That's all there is to it! With simple administration and a SaaS control plane, 
 
 Takeaways
 +++++++++
+
+- Frame is Desktop-as-a-Service (DaaS) offering by Nutanix.
+
+- Frame is Service, not Software. It can not be "installed."
+
+- Frame Pricing is per user. There are 2 models:
+
+  - Named User ($24/User before discounts)
+  - Concurrent User ($48/Concurrent User before discounts)
+
+- Virtual desktop VMs need to be on the network connected to the Internet.
 
 - Multi-cloud to take advantage of pay as you go workloads on AWS and Azure and soon predictable workloads with Nutanix AHV on-premises.
 

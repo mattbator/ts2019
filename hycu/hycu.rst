@@ -60,7 +60,7 @@ Fill out the following fields, highlight **OK** and press **Return**:
 - **Hostname** - *Initials*\ **-HYCU**
 - **IPv4 address** - *IP Assigned by DHCP*
 - **Subnet mask** - 255.255.255.128
-- **Default gateway** - *Secondary VLAN Gateway*
+- **Default gateway** - *Secondary VLAN Gateway* (e.g. 10.XX.YY.129)
 - **DNS server** - *Your DC VM IP*
 - **Search domain** - ntnxlab.local
 
@@ -529,7 +529,7 @@ Select your customized **Fast** policy and click **Assign**.
 
 Return to **Jobs** to verify the initial backup completes successfully.
 
-Using your Windows Tools VM or *Initials*\ **-HYCUBackTest** VM, access your Marketing share (e.g. ``\\<Initials>-Files\Marketing``) and perform the following:
+Using your Windows Tools VM or *Initials*\ **-HYCUBackupTest** VM, access your Marketing share (e.g. ``\\<Initials>-Files\Marketing``) and perform the following:
 
 - Update a file (e.g. edit a text file)
 - Add a new file
@@ -577,6 +577,15 @@ What are the key things you should know about **HYCU**?
 - HYCU is the only solution for ROBO customers that reduces network bandwidth by 50% by backing up from VM replicas.
 
 - HYCU offers the first scale-out backup and recovery for Nutanix Files, reducing resource requirements and time to backup by 90%.
+
+Cleanup
++++++++
+
+.. raw:: html
+
+  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
+
+Delete your *Initials*\ **-HYCUBackupTest** and *Initials*\ **-HYCUBackupTest-Clone** VMs.
 
 Getting Connected
 +++++++++++++++++

@@ -4,27 +4,27 @@
 Leap: DR Runbooks
 ------------------------
 
+*The estimated time to complete this lab is 60 minutes.*
+
+.. raw:: html
+
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/bWuW4nHIL9M?rel=0&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Overview
 ++++++++
 
-**Estimated time to complete: 60 MINUTES**
+Legacy disaster recovery configurations, created in Prism Element, use Protection Domains and third-party integrations to protect VMs, and they replicate data between on-premises Nutanix clusters. Protection Domains provide limited flexibility in terms of supporting operations such as VM boot order and require you to perform manual tasks to protect new VMs as an application scales up.
 
-Legacy disaster recovery configurations, which are created with Prism Element, use protection domains and third-party integrations to protect VMs, and they replicate data between on-premises Nutanix clusters.
-Protection domains provide limited flexibility in terms of supporting operations such as VM boot order and require you to perform manual tasks to protect new VMs as an application scales up.
+Leap uses an entity-centric approach and runbook-like automation to recover applications. It uses categories to group the entities to be protected and to automate the protection of new entities as the application scales. Application recovery is more flexible with network mappings, configurable stages to enforce a boot order, and optional inter-stage delays. Application recovery can also be validated and tested without affecting production workloads. All the configuration information that an application requires upon failover are synchronized to the recovery location.
 
-Leap uses an entity-centric approach and runbook-like automation to recover applications.
-It uses categories to group the entities to be protected and to automate the protection of new entities as the application scales.
-Application recovery is more flexible with network mappings, configurable stages to enforce a boot order, and optional inter-stage delays. Application recovery can also be validated and tested without affecting production workloads. All the configuration information that an application requires upon failover are synchronized to the recovery location.
+Leap can be used between clusters spanning multiple customer-operated datacenters or between a datacenter and Xi Cloud Services.
 
-You can use Leap between two physical data centers or between a physical data center and Xi Cloud Services.
-Leap works with pairs of physically isolated locations called availability zones.
-One availability zone serves as the primary location for an application while a paired availability zone serves as the recovery location.
-While the primary availability zone is an on-premises Prism Central instance, the recovery availability zone can be either on-premises or in Xi Cloud Services.
+**In this lab you will configure Leap to protect a multi-VM application and test its failover to a secondary Nutanix cluster.**
 
 Lab Setup
 +++++++++
 
-For this lab you will be using the HPOC you were assigned, as well as the secondary Prism Central you were assigned.
+For this lab you will be using the **Prism Central IP** you were assigned as your primary site, as well as the **Secondary PC IP** assigned in :ref:`clusterassignments`.
 
 This lab depends on the availability of a multi-tier **Wordpress** web application.
 
@@ -39,7 +39,7 @@ In **Prism Central** > select :fa:`bars` **> Virtual Infrastructure > Categories
 
 Fill out the following fields:
 
-- **Name**  - *initials*-DR
+- **Name**  - *Initials*-DR
 - **Purpose** - DR Runbooks
 - **Values**  - DB
 - **Values**  - web
@@ -51,13 +51,13 @@ Click **Save**.
 Assign Category
 ...............
 
-In **Prism Central** > select :fa:`bars` **> Virtual Infrastructure > VMs**
+In **Prism Central** > select :fa:`bars` **> Virtual Infrastructure > VMs**.
 
 Select the DRDB VM you created, and click **Manage Categories** from the **Actions** dropdown.
 
 .. figure:: images/drrunbooks_02.png
 
-Search for *initials*-**DR** you just created, and select *initials*-**DR:DB**.
+Search for *Initials*-**DR** you just created, and select *Initials*-**DR:DB**.
 
 .. figure:: images/drrunbooks_03.png
 
@@ -65,7 +65,7 @@ Click **Save**.
 
 Select the DRWeb VM you created, and click **Manage Categories** from the **Actions** dropdown.
 
-Search for *initials*-**DR** you just created, and select *initials*-**DR:Web**.
+Search for *Initials*-**DR** you just created, and select *Initials*-**DR:Web**.
 
 Click **Save**.
 
@@ -81,6 +81,8 @@ Leap is built into Prism Central and requires no additional appliances or consol
 Enable Leap and Connect Availability Zone (Local)
 .................................................
 
+Leap works with pairs of physically isolated locations called availability zones. Each availability zone must run its own instance of Prism Central. One availability zone serves as the primary location for an application while a paired availability zone serves as the recovery location.
+
 In **Prism Central**, click the **?** drop down menu, expand **New in Prism Central** and select **Leap**.
 
 In **Prism Central** > select :fa:`bars` **> Administration > Availability Zones**, and click **Connect to Availability Zone**.
@@ -88,6 +90,12 @@ In **Prism Central** > select :fa:`bars` **> Administration > Availability Zones
 .. note::
 
   You can only setup the **Connect to Availability Zone** once to a given Prism Central.
+
+Refer to :ref:`clusterassignments` to determine your **Secondary PC IP**, this will be used as the **DR PC** for this exercise.
+
+.. note::
+
+  The DR PC IP is entered on the local cluster because you are instantiating the connection to the DR cluster, and vice versa for the remote cluster.
 
 Fill out the following fields:
 
@@ -133,7 +141,7 @@ In **Prism Central** > select :fa:`bars` **> Policies > Protection Policies**, a
 
 Fill out the following fields:
 
-- **Name**  - *initials*-Protection
+- **Name**  - *Initials*-Protection
 - **Primary Location**  - Local AZ
 - **Remote Location** - Assigned DR PC
 - **Target Cluster**  - Assigned DR HPOC
@@ -143,8 +151,8 @@ Fill out the following fields:
 - **Local Retention**  - 2
 
 - Select **+ Add Categories**
-    - **Select Categories - *initials*-**DR:Web**
-    - **Select Categories - *initials*-**DR:DB**
+    - **Select Categories** - *Initials*-**DR:Web**
+    - **Select Categories** - *Initials*-**DR:DB**
     Select **Save**
 
 .. figure:: images/drrunbooks_06.png
@@ -165,7 +173,7 @@ Click **Proceed**
 
 Fill out the following fields:
 
-- **Name**  - *initials*-Recover
+- **Name**  - *Initials*-Recovery
 - **Recovery Plan Description** - optional
 
 Click **Next**
@@ -173,7 +181,7 @@ Click **Next**
 Select **+ Add Entities**
 
 - **Search Entities by**  - VM Name
-    - Add *DRDB1 - DRDB12 based on assignment*
+    - Add *Initials-DRDB1 - Initials-DRDB12 based on assignment*
     Select **Add**
 
 .. figure:: images/drrunbooks_07.png
@@ -185,7 +193,7 @@ Click **+ Add New Stage**
 Select **+ Add Entities**
 
 - **Search Entities by**  - VM Name
-    - Add *DRWeb1 - DRWeb12 based on assignment*
+    - Add *Initials-DRWeb1 - Initials-DRWeb12 based on assignment*
     Select **Add**
 
 .. note::
@@ -267,7 +275,7 @@ Perform Failover
 
 In **DR Prism Central** > select :fa:`bars` **> Policies > Recovery Plans**.
 
-Select your *initials*-\**Recovery** recovery plan and select **Failover** from the **Actions** dropdown.
+Select your *Initials*-**Recovery** recovery plan and select **Failover** from the **Actions** dropdown.
 
 .. figure:: images/drrunbooks_11.png
 
@@ -300,14 +308,14 @@ In **Prism Central** > select :fa:`bars` **> Virtual Infrastructure > VMs**.
 
 You can make sure that the DB and Web VMs are up.
 
-You can also go to the Wordpress url in your *initials*-**Windows-ToolsVM**, http://drweb1.ntnxlab.local and check that the service is up.
+You can also go to the Wordpress url in your *Initials*-**Windows-ToolsVM**, \http://*Initials-DRWebName*.ntnxlab.local and check that the service is up.
 
 Fail Back to the Original AZ (PC)
 +++++++++++++++++++++++++++++++++
 
 In **Prism Central** > select :fa:`bars` **> Policies > Recovery Plans**.
 
-Select your *initials*-\**Recovery** recovery plan and select **Failover** from the **Actions** dropdown.
+Select your *Initials*-**Recovery** recovery plan and select **Failover** from the **Actions** dropdown.
 
 You should see your assigned DR PC as the **Primary Location**, and your assigned HPOC PC (that you are logged into) as the **Recovery Location**.
 
@@ -318,7 +326,7 @@ Change the **Action** to **Execute Anyway**, and click **Proceed** when se the l
 Check Failover Status
 .....................
 
-Click the *initials*-\**Recovery** recovery plan to see the status and details.
+Click the *Initials*-**Recovery** recovery plan to see the status and details.
 
 .. note::
 
@@ -330,7 +338,7 @@ In **Prism Central** > select :fa:`bars` **> Virtual Infrastructure > VMs**.
 
 You can make sure that the DB and Web VMs are up.
 
-You can also go to the Wordpress url in your *initials*-**Windows-ToolsVM**, http://drweb1.ntnxlab.local and check that the service is up.
+You can also go to the Wordpress url in your *Initials*-**Windows-ToolsVM**, http://drweb1.ntnxlab.local and check that the service is up.
 
 Takeaways
 +++++++++
@@ -339,13 +347,22 @@ What are the key things you should know about **Nutanix Leap DR Runbooks**?
 
 - All new Runbook functionality is in PC and required on both sides.
 
-- Runbooks don't require you to setup remote sites or storage mappings anymore.
+- Runbooks don't require you to setup remote sites or storage mappings.
 
 - The last octet of IP address can be kept the same in a new subnet in case DNS doesn't work.
 
 - `Tech Note 2027 <https://portal.nutanix.com/#/page/solutions/details?targetId=TN-2027_Data_Protection_and_Disaster_Recovery:TN-2027_Data_Protection_and_Disaster_Recovery>`_
 
 - `Best Practice Guide <https://portal.nutanix.com/#/page/solutions/details?targetId=BP-2005_Data_Protection:BP-2005_Data_Protection - best practice>`_
+
+Cleanup
++++++++
+
+.. raw:: html
+
+  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
+
+Ensure your **Wordpress** VMs have been powered off or removed from both the primary and secondary clusters.
 
 Getting Connected
 +++++++++++++++++
@@ -368,8 +385,4 @@ Have a question about **Nutanix Leap DR Runbooks**? Please reach out to the reso
 |  Founders Team                 |  Archish Dalal, archish.dalal@nutanix.com      |
 +--------------------------------+------------------------------------------------+
 |  Founders Team                 |  Norbert Thier, norbert.thier@nutanix.com      |
-+--------------------------------+------------------------------------------------+
-|  SME                           |                                                |
-+--------------------------------+------------------------------------------------+
-|  SME                           |                                                |
 +--------------------------------+------------------------------------------------+

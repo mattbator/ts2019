@@ -4,10 +4,39 @@
 Calm: Windows Workloads
 -----------------------
 
+*The estimated time to complete this lab is 60 minutes.*
+
+.. raw:: html
+
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/aEKzpMvjObk?rel=0&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Overview
 ++++++++
 
 **In this exercise you will explore the basics of working with Windows workloads in Nutanix Calm by building and deploying a blueprint that installs and configures a multi-tier** `bug tracker <http://bugnetproject.com/documentation/>`_ **web app using Microsoft SQL Server database & IIS webserver. This lab assumes you are familiar with basic Calm functionality or have completed the** :ref:`calm_linux` **lab.**
+
+Verifying the Default Project
++++++++++++++++++++++++++++++
+
+In **Prism Central**, select :fa:`bars` **> Services > Calm**.
+
+.. figure:: images/project0.png
+
+Click |projects| **Projects** in the left hand toolbar and select the **default** project.
+
+.. note::
+
+  Mousing over an icon will display its title.
+
+Under **AHV Cluster** verify your assigned cluster is selected from the drop-down list, otherwise select it.
+
+.. figure:: images/project1.png
+
+Under **Network**, verify the **Primary** and **Secondary** networks are selected and the **Primary** network is the default. Otherwise, make the selections as shown below.
+
+.. figure:: images/project2.png
+
+If changes were made, click **Save**.
 
 Creating the Blueprint
 ++++++++++++++++++++++
@@ -461,10 +490,58 @@ Can you build a version of this Blueprint that leverages an Era clone of your SQ
 Takeaways
 +++++++++
 
-- Stuff
+- Calm provides the same application deployment and lifecycle management benefits for Windows workloads as it does for Linux workloads.
 
-- Goes
+- Calm can natively execute remote PowerShell scripts on Windows endpoints without the need for a Windows-based proxy.
 
-- Here
+Cleanup
++++++++
 
-- Integration with other apps - leveraging Era, eScript, and an existing VM service
+.. raw:: html
+
+  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
+
+If you do **NOT** intend to complete any of the *Optional* sections above, delete your application deployment in Calm.
+
+Getting Connected
++++++++++++++++++
+
+Have a question about **Nutanix Calm**? Please reach out to the resources below:
+
++---------------------------------------------------------------------------------+
+|  Calm Product Contacts                                                          |
++================================+================================================+
+|  Slack Channel                 |  #Calm                                         |
++--------------------------------+------------------------------------------------+
+|  Product Manager               |  Jasnoor Gill, jasnoor.gill@nutanix.com        |
++--------------------------------+------------------------------------------------+
+|  Product Marketing Manager     |  Chris Brown, christopher.brown@nutanix.com    |
++--------------------------------+------------------------------------------------+
+|  Technical Marketing Engineer  |  Michael Haigh, michael.haigh@nutanix.com      |
++--------------------------------+------------------------------------------------+
+|  Solutions Architect           |  Ben Peterson, bp@nutanix.com                  |
++--------------------------------+------------------------------------------------+
+|  Solutions Architect           |  Mark Lavi, mark.lavi@nutanix.com              |
++--------------------------------+------------------------------------------------+
+|  Solutions Architect           |  Andy Schmid, andy.schmid@nutanix.com          |
++--------------------------------+------------------------------------------------+
+|  Founders Team Manager         |  Mike Masterson, mike.masterson@nutanix.com    |
++--------------------------------+------------------------------------------------+
+|  Founders Team                 |  Akbar Aziz, akbar.aziz@nutanix.com            |
++--------------------------------+------------------------------------------------+
+|  Founders Team                 |  David Roberts, dave.roberts@nutanix.com       |
++--------------------------------+------------------------------------------------+
+|  Founders Team                 |  Sachin Malhotra, sachin.malhotra@nutanix.com  |
++--------------------------------+------------------------------------------------+
+|  SME Americas                  |  Alex Lott, alex.lott@nutanix.com              |
++--------------------------------+------------------------------------------------+
+|  SME APAC                      |  Lei Ming Pan, leiming.pan@nutanix.com         |
++--------------------------------+------------------------------------------------+
+|  SME APAC                      |  Chris Rasmussen, crasmussen@nutanix.com       |
++--------------------------------+------------------------------------------------+
+|  SME EMEA                      |  Christophe Jauffret, christophe@nutanix.com   |
++--------------------------------+------------------------------------------------+
+|  SME EMEA                      |  Jose Gomez, jose.gomez@nutanix.com            |
++--------------------------------+------------------------------------------------+
+
+.. |projects| image:: images/projects.png

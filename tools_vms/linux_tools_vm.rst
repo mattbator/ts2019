@@ -9,7 +9,11 @@ Overview
 
 This CentOS VM image will be staged with packages used to support multiple lab exercises.
 
-Deploy this VM on your assigned cluster if directed to do so as part of **Lab Setup**. Only deploy the VM once.
+Deploy this VM on your assigned cluster if directed to do so as part of **Lab Setup**.
+
+.. raw:: html
+
+  <strong><font color="red">Only deploy the VM once, it does not need to be cleaned up as part of any lab completion.</font></strong>
 
 Deploying CentOS
 ++++++++++++++++
@@ -56,9 +60,6 @@ Install the software needed by running the following commands:
   npm install -g express
   pip install -U pip
   pip install boto3
-  curl http://10.4.64.11:8080/Users/nutanix_buckets/ea/builds/18112018/tools/iam_util -o iam_util
-  curl http://10.4.64.11:8080/Users/nutanix_buckets/ea/builds/18112018/tools/mc -o mc
-  chmod +x iam_util mc
 
 Configuring NTP
 ...............

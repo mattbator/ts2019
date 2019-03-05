@@ -8,7 +8,7 @@ Xi Epoch
 
 .. raw:: html
 
-  <iframe src="https://drive.google.com/file/d/1sU4_1GPVTNGJwNDoy0kB04r-vz4-9Thq/preview" width="720" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/ua-n5y4LgWs?rel=0&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Overview
 ++++++++
@@ -319,6 +319,15 @@ What are the key things you should know about **Nutanix Xi Epoch**?
 - Prospects can sign up for a free trial of Xi Epoch `here <https://www.nutanix.com/products/epoch/signup/>`_.
 
 - Additional internal resources for Epoch are available `here <https://nutanixinc.sharepoint.com/sites/EpochHome36>`_.
+
+Cleanup
++++++++
+
+.. raw:: html
+
+  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
+
+If you do **NOT** intend to complete the :ref:`flow` lab, delete your application deployment in Calm, otherwise the same deployment can be used.
 
 Getting Connected
 +++++++++++++++++
