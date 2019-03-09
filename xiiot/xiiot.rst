@@ -39,6 +39,9 @@ At this point you should have a dashboard with a default User (you), Project, an
 Lab Setup
 +++++++++
 
+Deploy Xi Edge
+..............
+
 In this exercise you will deploy virtual Xi Edge.
 
 The Xi Edge OS was written from the ground up to efficiently run edge applications. At a high level, it consists of a Linux OS and Kubernetes cluster capable of natively running functions written in several software languages and Applications (containers) deployed via a standard Kubernetes yaml definition.
@@ -62,7 +65,7 @@ Fill out the following fields:
 - Select **+ Add New Disk**
     - **Type** - DISK
     - **Operation** - Clone from Image Service
-    - **Image** - sherlock-k8s-base-image_320.qcow2	
+    - **Image** - sherlock-k8s-base-image_320.qcow2
     - Select **Add**
 
 - Select **Add New NIC**
@@ -95,6 +98,21 @@ The dot next to the Xi Edge's **Name** indicates status. A grey dot indicated th
   The dashboard can take a few minutes to update once the Edge is added. Wait approximately 3 minutes then refresh the page. You should expect the status of the Edge to appear green.
 
 .. figure:: images/4.png
+
+The Facefeed application utilizes five Functions within two Data Pipelines to transform the incoming data (RTSP video stream)and draw inference (Face IDs) to identify faces. For convenience, these pre-made functions are available on GitHub:
+
+- **aggregatefeed.py** - maintains a buffer of known and unknown faces for output
+- **face_register.py** - combines UI data inputs for storage in the database
+- **facematch.py** - matches inference results to database of registered faces
+- **facerecognition.py** - uses a tensorflow machine learning model to draw inference
+- **raw_to_jpeg.py** - converts the raw binary stream into a readable format
+
+Download Xi IoT
+...............
+
+Open https://github.com/nutanix/xi-iot in a new browser tab and click **Clone or download > Download ZIP**.
+
+Extract the .zip file to a directory. These are required when referencing .yaml and .py files later in this lab.
 
 Defining Categories
 +++++++++++++++++++
@@ -241,17 +259,7 @@ Deploying Functions
 
 Xi IoT Functions allow developers to directly build and execute business logic to correlate, filter, or transform data in standard languages such as Python or Go without the burden of maintaining underlying operating systems or runtimes.
 
-The Facefeed application utilizes five Functions within two Data Pipelines to transform the incoming data (RTSP video stream)and draw inference (Face IDs) to identify faces. For convenience, these pre-made functions are available on GitHub:
 
-- **aggregatefeed.py** - maintains a buffer of known and unknown faces for output
-- **face_register.py** - combines UI data inputs for storage in the database
-- **facematch.py** - matches inference results to database of registered faces
-- **facerecognition.py** - uses a tensorflow machine learning model to draw inference
-- **raw_to_jpeg.py** - converts the raw binary stream into a readable format
-
-Open https://github.com/nutanix/xi-iot in a new browser tab and click **Clone or download > Download ZIP**.
-
-Extract the .zip file to a directory.
 
 From the **Xi IoT** management portal, select :fa:`bars` **> Projects > Facefeed > Apps & Data > Functions > + Add Function**.
 

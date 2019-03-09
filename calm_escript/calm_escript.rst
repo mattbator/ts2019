@@ -316,6 +316,10 @@ Takeaways
 
 What are the key things you should know about **Nutanix Calm**?
 
+- The task library allows commonly used operations to be written once and reused over and over again.  As time goes on more objects will be integrated into the task library, from Nutanix-provided common tasks to entire service objects
+
+- Calm 2.7 introduced the HTTP task, allowing the most common use of Escript to be more easily implemented (sending API calls)
+
 - In addition to being able to use Bash and Powershell scripts, Nutanix Calm can use EScript, which is a sandboxed Python interpreter, to provide application lifecycle management.
 
 - EScript tasks are run directly within the Calm engine, rather than being executed on the remote machine.
@@ -340,3 +344,34 @@ Have a question about **Nutanix Calm**? Please reach out to the resources below:
 +--------------------------------+------------------------------------------------+
 |  Technical Marketing Engineer  |  Michael Haigh, michael.haigh@nutanix.com      |
 +--------------------------------+------------------------------------------------+
+|  Solutions Architect           |  Ben Peterson, bp@nutanix.com                  |
++--------------------------------+------------------------------------------------+
+|  Solutions Architect           |  Mark Lavi, mark.lavi@nutanix.com              |
++--------------------------------+------------------------------------------------+
+|  Solutions Architect           |  Andy Schmid, andy.schmid@nutanix.com          |
++--------------------------------+------------------------------------------------+
+|  Founders Team Manager         |  Mike Masterson, mike.masterson@nutanix.com    |
++--------------------------------+------------------------------------------------+
+|  Founders Team                 |  Akbar Aziz, akbar.aziz@nutanix.com            |
++--------------------------------+------------------------------------------------+
+|  Founders Team                 |  David Roberts, dave.roberts@nutanix.com       |
++--------------------------------+------------------------------------------------+
+|  Founders Team                 |  Sachin Malhotra, sachin.malhotra@nutanix.com  |
++--------------------------------+------------------------------------------------+
+|  SME Americas                  |  Alex Lott, alex.lott@nutanix.com              |
++--------------------------------+------------------------------------------------+
+|  SME APAC                      |  Lei Ming Pan, leiming.pan@nutanix.com         |
++--------------------------------+------------------------------------------------+
+|  SME APAC                      |  Chris Rasmussen, crasmussen@nutanix.com       |
++--------------------------------+------------------------------------------------+
+|  SME EMEA                      |  Christophe Jauffret, christophe@nutanix.com   |
++--------------------------------+------------------------------------------------+
+|  SME EMEA                      |  Jose Gomez, jose.gomez@nutanix.com            |
++--------------------------------+------------------------------------------------+
+
+.. |proj-icon| image:: ../images/projects_icon.png
+.. |mktmgr-icon| image:: ../images/marketplacemanager_icon.png
+.. |mkt-icon| image:: ../images/marketplace_icon.png
+.. |bp-icon| image:: ../images/blueprints_icon.png
+.. |blueprints| image:: images/blueprints.png
+.. |applications| image:: images/blueprints.png

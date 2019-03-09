@@ -63,8 +63,8 @@ Fill out the following **Database Server** fields:
 
 .. code-block:: text
 
-ssh-rsa
-AAAAB3NzaC1yc2EAAAADAQABAAABAQDDoJlPj+ACPyHGm0f+FyTQPRt+m1H6JstyLtvFJUntDyF2/dqpcQ9QfKKw1QcjzGdSS8B6HrdOOjKZz42j01/YLWFy2YrDLQOHcNJi6XowCQ059C7bHehP5lqNN6bRIzdQnqGZGYi8iKYzUChMVusfsPd5ZZo0rHCAiCAP1yFqrcSmq83QNN1X8FZ1COoMB66vKyD2rEoeKz4lilEeWKyP4RLmkOc1eMYQNdyMOCNFFbKmC1nPJ+Mpxo1HfNR84R7WNl5oEaNQOORN+NaOzu5Bxim2hhJvU37J+504azZ1PCUiHiC0+zBw4JfeOKMvtInmkEZQEd3y4RrIHLXKB4Yb centos@nutanix.com
+  ssh-rsa
+  AAAAB3NzaC1yc2EAAAADAQABAAABAQDDoJlPj+ACPyHGm0f+FyTQPRt+m1H6JstyLtvFJUntDyF2/dqpcQ9QfKKw1QcjzGdSS8B6HrdOOjKZz42j01/YLWFy2YrDLQOHcNJi6XowCQ059C7bHehP5lqNN6bRIzdQnqGZGYi8iKYzUChMVusfsPd5ZZo0rHCAiCAP1yFqrcSmq83QNN1X8FZ1COoMB66vKyD2rEoeKz4lilEeWKyP4RLmkOc1eMYQNdyMOCNFFbKmC1nPJ+Mpxo1HfNR84R7WNl5oEaNQOORN+NaOzu5Bxim2hhJvU37J+504azZ1PCUiHiC0+zBw4JfeOKMvtInmkEZQEd3y4RrIHLXKB4Yb centos@nutanix.com
 
 .. figure:: images/era-provision-2.png
 
@@ -98,7 +98,7 @@ Creating the Object Storage Bucket
 
 In this exercise you will create an object storage bucket utilizing Nutanix Buckets. This bucket will be used to store all of our web app’s images.
 
-Open https://10.42.71.42:9440/ in a new browser tab and log in using the following credentials to access the *shared* Nutanix Buckets deployment:
+Open https://10.42.71.39:9440/ in a new browser tab and log in using the following credentials to access the *shared* Nutanix Buckets deployment:
 
 - **Username** - admin
 - **Password** - Nutanix.123
@@ -184,7 +184,7 @@ The application is an implementation of `Oscar <https://github.com/django-oscar/
 
 You will review each of the individual YAML files, and make some minor modifications.
 
-Using your *Initials*\ **-Windows-ToolsVM** web browser, download  :download:`NutanixCloudNativeLab.zip <NutanixCloudNativeLab.zip>`, which contains all YAML files required for the lab.
+Using your *Initials*\ **-Windows-ToolsVM** web browser, download `NutanixCloudNativeLab.zip <https://github.com/nutanixworkshops/ts2019/raw/master/cloud_native_lab/NutanixCloudNativeLab.zip>`_, which contains all YAML files required for the lab.
 
 Once the download has completed, extract the **NutanixCloudNativeLab-master** directory.
 
