@@ -8,7 +8,7 @@
 
    info/apacagenda
    info/clusteraccess
-   .. info/clusterinfo
+..   info/clusterinfo
    info/validation
 ..   info/hackerearth
 ..
@@ -91,7 +91,7 @@ Following the General Session on Tuesday morning, you will be able to access the
 
 .. Nutanix SEs who did not participate in last year's Tech Summit event must also complete the :ref:`nutanix101` and :ref:`hycu` labs.
 
-.. **For each lab you complete & validate, you'll be entered into a raffle to win a $50 VISA Gift Card!**
+.. **For each lab you complete & validate, you'll be entered into a raffle to win a $70 USD VISA Gift Card!**
 
 .. **Proctors will be regularly checking in with each table to validate completed labs.**
 
