@@ -347,7 +347,7 @@ You will first provision a CentOS VM to use as a client for your Files export.
 
      .. code-block:: bash
 
-       echo '*intials*-Files.ntnxlab.local:/logs /filesmnt nfs4' >> /etc/fstab
+       echo 'Intials-Files.ntnxlab.local:/ /filesmnt nfs4' >> /etc/fstab
 
 #. The following command will add 100 2MB files filled with random data to ``/filesmnt/logs``:
 
