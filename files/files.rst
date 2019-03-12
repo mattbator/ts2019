@@ -273,7 +273,7 @@ Creating the Export
    - **Authentication** - System
    - **Default Access (For All Clients)** - No Access
    - Select **+ Add exceptions**
-   - **Clients with Read-Write Access** - 10.21.\ *Your HPOC Subnet*\ .* (e.g. 10.21.78.\*)
+   - **Clients with Read-Write Access** - *The first 3 octets of your cluster network*\ .* (e.g. 10.42.78.\*)
 
    .. figure:: images/24.png
 
