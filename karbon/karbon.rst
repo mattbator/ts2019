@@ -284,6 +284,10 @@ Now that you have successfully run commands against your Kubernetes cluster usin
    - :download:`mysql-deployment.yaml`
    - :download:`wordpress-deployment.yaml`
 
+.. note::
+
+  If attempting to download the script results in an Access Denied error, log out of any AWS accounts from your browser or open the download link in **Incognito (Private Browsing)** mode.
+
 #. Move both files to the **wordpress** directory using the following command:
 
    .. code-block:: PowerShell
