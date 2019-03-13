@@ -281,8 +281,8 @@ Now that you have successfully run commands against your Kubernetes cluster usin
 
 #. Using your *Initials*\ **-Windows-ToolsVM** web browser, download the following YAML files for Wordpress and the MySQL deployment used by Wordpress:
 
-   - https://kubernetes.io/examples/application/wordpress/mysql-deployment.yaml
-   - https://kubernetes.io/examples/application/wordpress/wordpress-deployment.yaml
+   - :download:`mysql-deployment.yaml`
+   - :download:`wordpress-deployment.yaml`
 
 #. Move both files to the **wordpress** directory using the following command:
 
