@@ -71,6 +71,14 @@ Xi Edge can be deployed as a virtual machine on AHV and ESXi, or bare metal on s
    - Select **Add New NIC**
        - **VLAN Name** - Secondary
        - Select **Add**
+   - Select **Custom Script**
+   - Select **Type or Paste Script**
+
+   .. code-block::
+     :caption: Paste this script
+
+     #cloud-config
+     final_message: "cloud-config completed"
 
 #. Click **Save** to create the VM.
 
