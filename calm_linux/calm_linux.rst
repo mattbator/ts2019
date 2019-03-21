@@ -692,11 +692,11 @@ Takeaways
 
 What are the key things you should know about **Nutanix Calm**?
 
-- Nutanix Calm, as a native component of Prism, is built on and carries forward the benefits of the platform.  The simplicity provided by Acropolis lets Calm focus on the application, rather then trying to mask the complexity of the underlying infrastructure management
+- Nutanix Calm, as a native component of Prism, is built on and carries forward the benefits of the platform.  The simplicity provided by Acropolis lets Calm focus on applications, rather than trying to mask the complexity of the underlying infrastructure management.
 
-- Calm blueprints are easy to use.  In 60 minutes you went from nothing to a full infrastructure stack deployment.  Because Calm uses standard tools for configuration - bash, powershell, and later on python scrips - there's no complex new language to learn and you can immediately apply skills you already have
+- Calm blueprints are easy to use.  In 60 minutes you went from nothing to a full infrastructure stack deployment.  Because Calm uses standard tools for configuration - bash, PowerShell, Python, etc. - there's no new language to learn and you can immediately apply skills and code you already have.
 
-- While not as visually impressive, even single VM blueprints can have a massive effect on customers.  One bank in India is using Calm for single-VM deployments, reducing the time to deploy these applications from 3 days to a couple of hours.  Remember that many of our customers have little or no automation today (or the automation they have is complex/hard to understand thus limiting it's adoption).  This means that Calm can help them right now, today, instantly.
+- While not as visually impressive, even single VM blueprints can have a massive effect on customers.  One bank in India is using Calm for single-VM deployments, reducing the time to deploy these applications from 3 days to 2 hours.  Remember that many customers have little or no automation today (or the automation they have is complex/hard to understand thus limiting it's adoption).  This means that Calm can help them right now, today, instantly.
 
 - "Multi-Cloud Application Automation and Lifecycle Management" sounds big and scary.  The 'future' sounds amazing, but many operators can't see the path to there.  Listen to what the customer is struggling with today (backups require specialized skills, VM deployment takes a long time, upgrades are hard) and speak to how Calm can help with that; jumping right to the multi-cloud automation story pushes Calm from a "I need this right now" to a "well let's evaluate this later on, once things have quieted down" (and things never truly 'quiet down'.
 
