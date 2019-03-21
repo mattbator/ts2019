@@ -1,3 +1,6 @@
+.. role:: html(raw)
+   :format: html
+
 .. _peer:
 
 ------------------------
@@ -67,146 +70,142 @@ Once complete, your lab environment will resemble the diagram below:
 
 --------------------------------------------------------------------
 
-On your **Primary Prism Central**, select :fa:`bars` **> Virtual Infrastructure > VMs**.
+#. On your **Primary Prism Central**, select :fa:`bars` **> Virtual Infrastructure > VMs**.
 
-.. figure:: images/1.png
+   .. figure:: images/1.png
 
-Click **Create VM**.
+#. Click **Create VM**.
 
-.. note::
+   .. note::
 
-  Selecting the **Secondary** network is important as it is configured as the Client network for the Files deployment. VMs on the **Primary** network (configured as the Files Storage network) are unable to access shares.
+     Selecting the **Secondary** network is important as it is configured as the Client network for the Files deployment. VMs on the **Primary** network (configured as the Files Storage network) are unable to access shares.
 
-.. note::
+   .. note::
 
-  If you are comfortable working with **unattend.xml** files, you can edit the **<ComputerName>\*</ComputerName>** line to reflect the respective VM Name during VM creation. This will simplify identification of the Peer Agent VMs later in the lab.
+     If you are comfortable working with **unattend.xml** files, you can edit the **<ComputerName>\*</ComputerName>** line to reflect the respective VM Name during VM creation. This will simplify identification of the Peer Agent VMs later in the lab.
 
-Fill out the following fields:
+#. Fill out the following fields:
 
-- **Name** - *Initials*\ -PeerMgmt
-- **Description** - (Optional) Description for your VM.
-- **vCPU(s)** - 2
-- **Number of Cores per vCPU** - 1
-- **Memory** - 4 GiB
+   - **Name** - *Initials*\ -PeerMgmt
+   - **Description** - (Optional) Description for your VM.
+   - **vCPU(s)** - 2
+   - **Number of Cores per vCPU** - 1
+   - **Memory** - 4 GiB
 
-- Select **+ Add New Disk**
-    - **Type** - DISK
-    - **Operation** - Clone from Image Service
-    - **Image** - Windows2012R2.qcow2
-    - Select **Add**
+   - Select **+ Add New Disk**
+       - **Type** - DISK
+       - **Operation** - Clone from Image Service
+       - **Image** - Windows2012R2.qcow2
+       - Select **Add**
 
-- Select **Add New NIC**
-    - **VLAN Name** - Secondary
-    - Select **Add**
-- Select **Custom Script**
-- Select **Type or Paste Script**
+   - Select **Add New NIC**
+       - **VLAN Name** - Secondary
+       - Select **Add**
+   - Select **Custom Script**
+   - Select **Type or Paste Script**
 
-.. literalinclude:: unattend.xml
-   :caption: PeerMgmt and PeerAgentA Unattend.xml
-   :language: xml
+   .. literalinclude:: unattend.xml
+      :caption: PeerMgmt and PeerAgentA Unattend.xml
+      :language: xml
 
-Click **Save** to create the VM.
+#. Click **Save** to create the VM.
 
-Repeat the above steps to create a second VM named *Initials*\ **-PeerAgentA**.
+#. Repeat Steps 2-4 to create a second VM named *Initials*\ **-PeerAgentA**.
 
-**Power On** your *Initials*\ **-PeerMgmt** and *Initials*\ **-PeerAgentA** VMs.
+#. **Power On** your *Initials*\ **-PeerMgmt** and *Initials*\ **-PeerAgentA** VMs.
 
 --------------------------------------------------------
 
-Log in to your **Secondary Prism Central** and create the following VM:
+#. Log in to your **Secondary Prism Central** and create the following VM:
 
-- **Name** - *Initials*\ -PeerAgentB
-- **Description** - (Optional) Description for your VM.
-- **vCPU(s)** - 2
-- **Number of Cores per vCPU** - 1
-- **Memory** - 4 GiB
+   - **Name** - *Initials*\ -PeerAgentB
+   - **Description** - (Optional) Description for your VM.
+   - **vCPU(s)** - 2
+   - **Number of Cores per vCPU** - 1
+   - **Memory** - 4 GiB
 
-- Select **+ Add New Disk**
-    - **Type** - DISK
-    - **Operation** - Clone from Image Service
-    - **Image** - Windows2012R2.qcow2
-    - Select **Add**
+   - Select **+ Add New Disk**
+       - **Type** - DISK
+       - **Operation** - Clone from Image Service
+       - **Image** - Windows2012R2.qcow2
+       - Select **Add**
 
-- Select **Add New NIC**
-    - **VLAN Name** - Secondary
-    - Select **Add**
-- Select **Custom Script**
-- Select **Type or Paste Script**
+   - Select **Add New NIC**
+       - **VLAN Name** - Secondary
+       - Select **Add**
+   - Select **Custom Script**
+   - Select **Type or Paste Script**
 
-.. literalinclude:: unattendpeeragentB.xml
-   :caption: PeerAgentB Unattend.xml
-   :language: xml
+   .. literalinclude:: unattendpeeragentB.xml
+      :caption: PeerAgentB Unattend.xml
+      :language: xml
 
-Click **Save** and **Power on** the VM.
+#. Click **Save** and **Power on** the VM.
 
-.. note::
+   .. note::
 
-  There is a slight difference in the Sysprep script for PeerAgentB where the VM is not automatically joined to the NTNXLAB.local domain. This is because each cluster has an independent domain controller and we require that all VMs in the lab authenticate against the same Active Directory environment.
+     There is a slight difference in the Sysprep script for PeerAgentB where the VM is not automatically joined to the NTNXLAB.local domain. This is because each cluster has an independent domain controller and we require that all VMs in the lab authenticate against the same Active Directory environment.
 
-Once *Initials*\ **-PeerAgentB** has powered on and completed its initial Sysprep process (~2 minutes), connect to the VM via RDP using the following credentials:
+#. Once *Initials*\ **-PeerAgentB** has powered on and completed its initial Sysprep process (~2 minutes), connect to the VM via RDP using the following credentials:
 
-- **Username** - Administrator
-- **Password** - nutanix/4u
+   - **Username** - Administrator
+   - **Password** - nutanix/4u
 
-Open **PowerShell** and execute the following command, replacing **10.XX.YY.40** with the IP address of your primary cluster's **AutoDC2** (Domain Controller) VM:
+#. Open **PowerShell** and execute the following command, replacing **10.XX.YY.40** with the IP address of your primary cluster's **AutoDC2** (Domain Controller) VM:
 
-.. code-block:: Powershell
-  :emphasize-lines: 1
+   .. code-block:: Powershell
+     :emphasize-lines: 1
 
-  # Updates your network adapter to use your Primary cluster DC for DNS
-  Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddress "10.XX.YY.40"
+     # Updates your network adapter to use your Primary cluster DC for DNS
+     Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddress "10.XX.YY.40"
 
-.. note::
+   .. note::
 
-  When copying and pasting via RDP, pasting directly into PowerShell is inconsistent. If this is an issue, first paste into Notepad within the VM, then copy and paste into PowerShell.
+     When copying and pasting via RDP, pasting directly into PowerShell is inconsistent. If this is an issue, first paste into Notepad within the VM, then copy and paste into PowerShell.
 
-Run ``ipconfig /all`` and verify your **DNS Server** is set to the IP address of the **AutoDC2** VM on your primary cluster.
+#. Run ``ipconfig /all`` and verify your **DNS Server** is set to the IP address of the **AutoDC2** VM on your primary cluster.
 
-Execute the following to join the domain and reboot *Initials*\ **PeerAgentB**:
+#. Execute the following to join the domain and reboot *Initials*\ **PeerAgentB**:
 
-.. code-block:: Powershell
-  :emphasize-lines: 1
+   .. code-block:: Powershell
+     :emphasize-lines: 1
 
-  # Joins the NTNXLAB.local domain of your Primary cluster and reboots the VM
-  $pass = convertto-securestring "nutanix/4u" -asplaintext -force
-  $domaincred = new-object system.management.automation.pscredential "NTNXLAB\Administrator",$pass
-  add-computer -credential $domaincred -domainname "NTNXLAB.local" -restart -force
+     # Joins the NTNXLAB.local domain of your Primary cluster and reboots the VM
+     $pass = convertto-securestring "nutanix/4u" -asplaintext -force
+     $domaincred = new-object system.management.automation.pscredential "NTNXLAB\Administrator",$pass
+     add-computer -credential $domaincred -domainname "NTNXLAB.local" -restart -force
 
 Windows File Server
 ...................
 
 The final step of staging the lab is configuring *Initials*\ **-PeerAgentB** as a Windows File Server. Peer is capable of replicating between multiple Files clusters as well as between a mix of Files and other NAS platforms. For this lab, you will be replicating between your Nutanix Files cluster and a Windows File Server.
 
-Connect to *Initials*\ **-PeerAgentB** via RDP using the following credentials:
+#. Connect to *Initials*\ **-PeerAgentB** via RDP using the following credentials:
 
-- **Username** - NTNXLAB\\Administrator (**NOT** the local Administrator account)
-- **Password** - nutanix/4u
+   - **Username** - NTNXLAB\\Administrator (**NOT** the local Administrator account)
+   - **Password** - nutanix/4u
 
-Open **File Explorer** and create a new folder under ``C:\`` named **Data**.
+#. Open **File Explorer** and create a new folder under ``C:\`` named **Data**.
 
-Right-click **Data** and select **Properties**.
+#. Right-click **Data** and select **Properties**.
 
-.. figure:: images/2.png
+   .. figure:: images/2.png
 
-Under the **Sharing** tab, click **Share**.
+#. Under the **Sharing** tab, click **Share**.
 
-.. figure:: images/3.png
+   .. figure:: images/3.png
 
-Enter **Everyone** and click **Add**. Change the **Permission Level** to **Read/Write**.
+#. Enter **Everyone** and click **Add**. Change the **Permission Level** to **Read/Write**.
 
-.. figure:: images/4.png
+   .. figure:: images/4.png
 
-Click **Share > Done > Close**.
+#. Click **Share > Done > Close**.
 
-Finally, you will populate your newly created Windows file share with sample data.
+   Finally, you will populate your newly created Windows file share with sample data.
 
-Within your *Initials*\ **-PeerAgentB** VM, download the **SampleData_Small.zip** file and extract its contents in ``C:\Data\``. When complete, your Data directory should resemble the screenshot below:
+#. Within your *Initials*\ **-PeerAgentB** VM, download the **SampleData_Small.zip** file from http://10.42.8.50/peer/ and extract its contents in ``C:\Data\``. When complete, your Data directory should resemble the screenshot below:
 
-**SampleData_Small.zip**
-- **PHX Clusters** - http://10.42.8.50/peer/
-- **RTP Clusters** - https://peerresources.blob.core.windows.net/sample-data/SampleData_Small.zip
-
-.. figure:: images/5.png
+   .. figure:: images/5.png
 
 Port Diagram
 ............
@@ -222,34 +221,34 @@ The following illustration shows necessary ports and communication flow for the 
 Configuring Nutanix Files
 +++++++++++++++++++++++++
 
-Peer Global File Service requires both a File Server Admin account as well as RESI API access to orchestrate replication to or from Nutanix Files.
+Peer Global File Service requires both a File Server Admin account as well as REST API access to orchestrate replication to or from Nutanix Files.
 
-Log in to **Prism Element** (e.g. 10.XX.YY.37) on your **Primary** Nutanix cluster.
+#. Log in to **Prism Element** (e.g. 10.XX.YY.37) on your **Primary** Nutanix cluster.
 
-Navigate to **File Server** from the drop down navigation and select your *Initials*\ **-Files** cluster.
+#. Navigate to **File Server** from the drop down navigation and select your *Initials*\ **-Files** cluster.
 
-Click **Manage roles**.
+#. Click **Manage roles**.
 
-.. figure:: images/6.png
+   .. figure:: images/6.png
 
-Under **Add admins**, **NTNXLAB\\Administrator** should already be added as a **File Server Admin**. If not, click **+ New user** and add **NTNXLAB\\Administrator**.
+#. Under **Add admins**, **NTNXLAB\\Administrator** should already be added as a **File Server Admin**. If not, click **+ New user** and add **NTNXLAB\\Administrator**.
 
-.. figure:: images/7.png
+   .. figure:: images/7.png
 
-.. note::
+   .. note::
 
-  In a production environment you would likely use an Active Directory service account for Peer.
+     In a production environment you would likely use an Active Directory service account for Peer.
 
-Under **REST API access users**, click **+ Add new user**.
+#. Under **REST API access users**, click **+ Add new user**.
 
-Fill out the following fields and click **Save**:
+#. Fill out the following fields and click **Save**:
 
-- **Username** - peer
-- **Password** - nutanix/4u
+   - **Username** - peer
+   - **Password** - nutanix/4u
 
-.. figure:: images/8.png
+   .. figure:: images/8.png
 
-Click **Close**.
+#. Click **Close**.
 
 Installing Peer Management Center
 +++++++++++++++++++++++++++++++++
@@ -258,38 +257,38 @@ In this exercise you'll walk through the installation of Peer Management Center 
 
 PMC does not store any file data but does facilitate communication between locations so it should be deployed at a location with the best connectivity. A single deployment of PMC can manage 50 or more Agents/file servers.
 
-Connect to your *Initials*\ -**PeerMgmt** VM on your **Primary** cluster via RDP or VM console using the following credentials:
+#. Connect to your *Initials*\ -**PeerMgmt** VM on your **Primary** cluster via RDP or VM console using the following credentials:
 
-- **Username** - NTNXLAB\\Administrator
-- **Password** - nutanix/4u
+   - **Username** - NTNXLAB\\Administrator
+   - **Password** - nutanix/4u
 
-Within the VM, download **PMC_Installer_Win64.exe** AND **PeerGlobalFileService\*.lic** from http://10.42.8.50/peer/.
+#. Within the VM, download **PMC_Installer_Win64.exe** AND **PeerGlobalFileService\*.lic** from http://10.42.8.50/peer/.
 
-Run **PMC_Installer_Win64.exe** and proceed with the default selections **UNTIL** you reach **Peer Management Center Web Server Configuration**.
+#. Run **PMC_Installer_Win64.exe** and proceed with the default selections **UNTIL** you reach **Peer Management Center Web Server Configuration**.
 
-While this lab uses the rich client included with the PMC, the installer also offers a web service that mirrors all the capabilities of the rich client with the addition of role-based web access.
+   While this lab uses the rich client included with the PMC, the installer also offers a web service that mirrors all the capabilities of the rich client with the addition of role-based web access.
 
-Note that for security purposes the PMC Web Service can be restricted to only allow access from the host on which the PMC is installed. **Leave the default configuration, as shown below**.
+   Note that for security purposes the PMC Web Service can be restricted to only allow access from the host on which the PMC is installed. **Leave the default configuration, as shown below**.
 
-.. figure:: images/9.png
+   .. figure:: images/9.png
 
-Complete the installation using the default selections and click **Finish** to launch the PMC Client.
+#. Complete the installation using the default selections and click **Finish** to launch the PMC Client.
 
-.. figure:: images/10.png
+   .. figure:: images/10.png
 
-Once services have started, the PMC Client will open and prompt for a license file.
+   Once services have started, the PMC Client will open and prompt for a license file.
 
-Click **Add/Update**, browse to the previously downloaded **PeerGlobalFileService\*.lic** file and click **Open**.
+#. Click **Add/Update**, browse to the previously downloaded **PeerGlobalFileService\*.lic** file and click **Open**.
 
-.. figure:: images/11.png
+   .. figure:: images/11.png
 
-.. note::
+   .. note::
 
-  If accessing the *Initials*\ -**PeerMgmt** from the VM console, you may need to scroll the **Licensing** screen to the right in order to access the **Add/Update** button.
+     If accessing the *Initials*\ -**PeerMgmt** from the VM console, you may need to scroll the **Licensing** screen to the right in order to access the **Add/Update** button.
 
-After the license is installed, click **OK** to close Preferences.
+#. After the license is installed, click **OK** to close Preferences.
 
-.. figure:: images/12.png
+   .. figure:: images/12.png
 
 Installing the Peer Agent
 +++++++++++++++++++++++++
@@ -299,61 +298,61 @@ The Peer Agent is one of the core components of Peer Global File Service. Each A
 PeerAgentA
 ..........
 
-Connect to your *Initials*\ -**PeerAgentA** VM on your **Primary** cluster via RDP or VM console using the following credentials:
+#. Connect to your *Initials*\ -**PeerAgentA** VM on your **Primary** cluster via RDP or VM console using the following credentials:
 
-- **Username** - NTNXLAB\\Administrator
-- **Password** - nutanix/4u
+   - **Username** - NTNXLAB\\Administrator
+   - **Password** - nutanix/4u
 
-Within the VM, download **P-Agent_Installer_win64.exe** from http://10.42.8.50/peer/.
+#. Within the VM, download **P-Agent_Installer_win64.exe** from http://10.42.8.50/peer/.
 
-Run **P-Agent_Installer_win64.exe** and proceed with the default selects **UNTIL** you reach **Peer Management Broker Configuration**.
+#. Run **P-Agent_Installer_win64.exe** and proceed with the default selects **UNTIL** you reach **Peer Management Broker Configuration**.
 
-Fill out the following fields and click **Next**:
+#. Fill out the following fields and click **Next**:
 
-- **Hostname** - *Initials*\ -PeerMgmt IP Address
-- **Protocol** - TCP
-- **Port** - *Leave default*
+   - **Hostname** - *Initials*\ -PeerMgmt IP Address
+   - **Protocol** - TCP
+   - **Port** - *Leave default*
 
-.. figure:: images/13.png
+   .. figure:: images/13.png
 
-.. note::
+   .. note::
 
-  When the Agent will communicate with the PMC over a secure VPN or local connection it is recommended to set the protocol to **TCP**. Otherwise, the Agent will use TLS 1.2 to secure communication with the PMC.
+     When the Agent will communicate with the PMC over a secure VPN or local connection it is recommended to set the protocol to **TCP**. Otherwise, the Agent will use TLS 1.2 to secure communication with the PMC.
 
-Provide the following credentials for the **Agent Service Account**:
+#. Provide the following credentials for the **Agent Service Account**:
 
-- Select **Enter Domain Admin Credentials**
-- **Domain\\UserName** - NTNXLAB\\Administrator
-- **Password** - nutanix/4u
-- **Re-enter Password** - nutanix/4u
+   - Select **Enter Domain Admin Credentials**
+   - **Domain\\UserName** - NTNXLAB\\Administrator
+   - **Password** - nutanix/4u
+   - **Re-enter Password** - nutanix/4u
 
-.. figure:: images/14.png
+   .. figure:: images/14.png
 
-The Peer Agent service account must be a domain user with local administrator rights on both the Agent VM as well as the Nutanix Files cluster that it will manage.
+   The Peer Agent service account must be a domain user with local administrator rights on both the Agent VM as well as the Nutanix Files cluster that it will manage.
 
-Click **Next > Next > Finish** to complete the installation of the Peer Agent software.
+#. Click **Next > Next > Finish** to complete the installation of the Peer Agent software.
 
-Return to the **PMC Client** on your *Initials*\ -**PeerMgmt** VM and verify the hostname of your *Initials*\ -**PeerAgentA** VM appears as **Connected** under **Agent Detail Summary**.
+#. Return to the **PMC Client** on your *Initials*\ -**PeerMgmt** VM and verify the hostname of your *Initials*\ -**PeerAgentA** VM appears as **Connected** under **Agent Detail Summary**.
 
-.. figure:: images/15.png
+   .. figure:: images/15.png
 
-.. note::
+   .. note::
 
-  If it is not listed, check local firewall policies on the PMC server.  The PMC requires that inbound port 61617 be open for SSL/TLS communication and the inbound port 61616 be open for non-SSL/TLS communication.
+     If it is not listed, check local firewall policies on the PMC server.  The PMC requires that inbound port 61617 be open for SSL/TLS communication and the inbound port 61616 be open for non-SSL/TLS communication.
 
 PeerAgentB
 ..........
 
-Connect to your *Initials*\ -**PeerAgentB** VM on your **Secondary** cluster via RDP or VM console using the following credentials:
+#. Connect to your *Initials*\ -**PeerAgentB** VM on your **Secondary** cluster via RDP or VM console using the following credentials:
 
-- **Username** - NTNXLAB\\Administrator
-- **Password** - nutanix/4u
+   - **Username** - NTNXLAB\\Administrator
+   - **Password** - nutanix/4u
 
-Repeat the steps in `PeerAgentA`_ to install the Peer Agent software on *Initials*\ -**PeerAgentB**.
+#. Repeat Steps 2-7 in `PeerAgentA`_ to install the Peer Agent software on *Initials*\ -**PeerAgentB**.
 
-Once you have completed Agent installation, both Agent VMs should appear as **Connected** in the **PMC Client**.
+   Once you have completed Agent installation, both Agent VMs should appear as **Connected** in the **PMC Client**.
 
-.. figure:: images/16.png
+   .. figure:: images/16.png
 
 Creating a New Job
 ++++++++++++++++++
@@ -378,91 +377,91 @@ Available job types include:
 
 In this lab, we will focus on **File Collaboration**.
 
-In the **PMC Client**, click **File > New Job**.
+#. In the **PMC Client**, click **File > New Job**.
 
-Select **File Collaboration** and click **Create**.
+#. Select **File Collaboration** and click **Create**.
 
-.. figure:: images/17.png
+   .. figure:: images/17.png
 
-Provide a name for the job and click **OK**.
+#. Provide a name for the job and click **OK**.
 
-.. figure:: images/18.png
+   .. figure:: images/18.png
 
 Files and PeerAgentA
 ....................
 
-Click **Add** to begin pairing a Peer Agent with your Nutanix Files cluster.
+#. Click **Add** to begin pairing a Peer Agent with your Nutanix Files cluster.
 
-.. figure:: images/19.png
+   .. figure:: images/19.png
 
-Select **Nutanix Files** and click **Next**.
+#. Select **Nutanix Files** and click **Next**.
 
-.. figure:: images/20.png
+   .. figure:: images/20.png
 
-Select the VM hostname that corresponds to your *Initials*\ **-PeerAgentA** VM and click **Next**. This Agent will manage the Files cluster.
+#. Select the VM hostname that corresponds to your *Initials*\ **-PeerAgentA** VM and click **Next**. This Agent will manage the Files cluster.
 
-.. figure:: images/21.png
+   .. figure:: images/21.png
 
-On the **Storage Information** page, fill out the following fields:
+#. On the **Storage Information** page, fill out the following fields:
 
-- **Nutanix Files Cluster Name** - *Initials*\ -Files
+   - **Nutanix Files Cluster Name** - *Initials*\ -Files
 
-  *The NETBIOS name of the Files cluster that will be paired with the Agent selected in the previous step.*
+     *The NETBIOS name of the Files cluster that will be paired with the Agent selected in the previous step.*
 
-- **Username** - peer
+   - **Username** - peer
 
-  *This is the Files API account username configured earlier in the lab.*
+     *This is the Files API account username configured earlier in the lab.*
 
-- **Password** - nutanix/4u
+   - **Password** - nutanix/4u
 
-  *The password associated with the Files API account.*
+     *The password associated with the Files API account.*
 
-- **Peer Agent IP** - *Initials*\ -PeerAgentA IP Address
+   - **Peer Agent IP** - *Initials*\ -PeerAgentA IP Address
 
-  *The IP address of the Agent server that will receive real-time notifications from the Files File Activity Monitoring API.*
+     *The IP address of the Agent server that will receive real-time notifications from the Files File Activity Monitoring API.*
 
-Click **Validate** to confirm Files can be accessed via API using the provided credentials.
+#. Click **Validate** to confirm Files can be accessed via API using the provided credentials.
 
-.. figure:: images/22.png
+   .. figure:: images/22.png
 
-.. note::
+   .. note::
 
-  Once you enter these credentials, they will be reusable when creating new jobs that use this particular Agent.  When you create your next job, select **Existing Credentials** on this page to display a list of previously configured credentials.
+     Once you enter these credentials, they will be reusable when creating new jobs that use this particular Agent.  When you create your next job, select **Existing Credentials** on this page to display a list of previously configured credentials.
 
-Click **Next**.
+#. Click **Next**.
 
-Click **Browse** to select the share you wish to replicate. You can also navigate to a subfolder below a share.
+#. Click **Browse** to select the share you wish to replicate. You can also navigate to a subfolder below a share.
 
-Select your *Initials*\ **-Peer** share and click **OK**.
+#. Select your *Initials*\ **-Peer** share and click **OK**.
 
-.. figure:: images/23.png
+   .. figure:: images/23.png
 
-.. note::
+   .. note::
 
-  While Nutanix Files 3.2 supports nested shares, they are not currently supported for replication with Peer Global File Service. Support for this feature is being targeted for Files 3.5 timeframe.
+     While Nutanix Files 3.2 supports nested shares, they are not currently supported for replication with Peer Global File Service. Support for this feature is being targeted for Files 3.5 timeframe.
 
-.. note::
+   .. note::
 
-  You can only select a single share or folder. You will need to create an additional job for each additional share you wish to replicate.
+     You can only select a single share or folder. You will need to create an additional job for each additional share you wish to replicate.
 
-Click **Finish**. You have now completed pairing the Peer Agent to Nutanix Files.
+#. Click **Finish**. You have now completed pairing the Peer Agent to Nutanix Files.
 
-.. figure:: images/24.png
+   .. figure:: images/24.png
 
 PeerAgentB
 ..........
 
 To simplify the lab exercise, the Peer Agent running on your **Secondary** cluster will also function as a standard Windows File Server. While Peer can be used to replicate shares between Nutanix Files clusters, one of its key advantages is the ability to work with mixed NAS platforms. This can help drive adoption of Nutanix Files when only a single site has been refreshed with Nutanix Files, but replication is still required to support collaboration or disaster recovery.
 
-Repeat the steps in `Files and PeerAgentA`_ to add *Initials*\ **-PeerAgentB** to the job, making the following changes:
+#. Repeat Steps 1-8 in `Files and PeerAgentA`_ to add *Initials*\ **-PeerAgentB** to the job, :html:`<strong><font color="red">making the following changes</font></strong>`:
 
-- **Storage Platform** - Windows File Server
-- **Management Agent** - *Initials*\ **-PeerAgentB** Hostname
-- **Path** - C:\\Data
+   - **Storage Platform** - Windows File Server
+   - **Management Agent** - *Initials*\ **-PeerAgentB** Hostname
+   - **Path** - C:\\Data
 
-.. figure:: images/25.png
+   .. figure:: images/25.png
 
-Click **Next**.
+#. Click **Next**.
 
 Completing Job Configuration
 ............................
@@ -498,17 +497,17 @@ Peer offers robust functionality for handling the synchronization of NTFS permis
 
   *If there is a permission discrepancy between two or more sites, the permissions set on the file server tied to the Master Host will override those on the other file servers.*
 
-For the purposes of this lab exercise, leave the default configuration and click **Next**.
+#. For the purposes of this lab exercise, leave the default configuration and click **Next**.
 
-.. figure:: images/26.png
+   .. figure:: images/26.png
 
-Under **Application Support**, select **Microsoft Office**.
+#. Under **Application Support**, select **Microsoft Office**.
 
-The Peer synchronization and locking engine is automatically optimized to best support any of the selected applications.
+   The Peer synchronization and locking engine is automatically optimized to best support any of the selected applications.
 
-.. figure:: images/27.png
+   .. figure:: images/27.png
 
-Click **Next > Finish** to complete the job setup.
+#. Click **Next > Finish** to complete the job setup.
 
 Starting a Job
 ++++++++++++++
@@ -517,30 +516,30 @@ Starting a Job
 
 Once a job has been created, it must be started to initiate synchronization and file locking.
 
-In the **PMC Client**, under **Jobs**, right-click your newly created job and select **Start**.
+#. In the **PMC Client**, under **Jobs**, right-click your newly created job and select **Start**.
 
-.. figure:: images/28.png
+   .. figure:: images/28.png
 
-When the job starts:
+   When the job starts:
 
-- Connectivity to all Agents and Files clusters (or other NAS devices) is checked.
-- The real-time monitoring engine is initialized.
-- A background scan is kicked off to ensure all file servers are in sync with another.
+   - Connectivity to all Agents and Files clusters (or other NAS devices) is checked.
+   - The real-time monitoring engine is initialized.
+   - A background scan is kicked off to ensure all file servers are in sync with another.
 
-Double-click the job in the **Job** pane to view its runtime information and statistics.
+#. Double-click the job in the **Job** pane to view its runtime information and statistics.
 
-.. note::
+   .. note::
 
-  Click **Auto-Update** to have the console regularly refresh as files begin replicating.
+     Click **Auto-Update** to have the console regularly refresh as files begin replicating.
 
-.. figure:: images/29.png
+   .. figure:: images/29.png
 
 Testing the Share
 +++++++++++++++++
 
 .. note::
 
-  This exercise requires the :ref:`windows_tools_vm`.
+  This exercise requires the :ref:`windows_tools_vm`. Alternatively you can install OpenOffice Writer or Microsoft Word within your PMC VM.
 
 The easiest way to verify synchronization is functioning properly is to open 2 different File Explorer windows to the respective Nutanix Files and Windows File Server paths.
 
@@ -548,46 +547,46 @@ The easiest way to verify synchronization is functioning properly is to open 2 d
 
   Do **NOT** test using an Agent server VM. Peer automatically filters all activity from these servers to reduce overhead on the Nutanix Files cluster.
 
-Connect to your *Initials*\ **-Windows-ToolsVM** via RDP using the following credentials:
+#. Connect to your *Initials*\ **-Windows-ToolsVM** via RDP using the following credentials:
 
-- **Username** - Administrator
-- **Password** - nutanix/4u
+   - **Username** - Administrator
+   - **Password** - nutanix/4u
 
-Open File Explorer and browse to your Nutanix Files share, e.g. ``\\Initials-Files\Initials-Peer``. Drag this window to the left side of the desktop.
+#. Open File Explorer and browse to your Nutanix Files share, e.g. ``\\Initials-Files\Initials-Peer``. Drag this window to the left side of the desktop.
 
-Note that the sample data seeded into the Windows File Server during lab setup has already been replicated to Nutanix Files.
+   Note that the sample data seeded into the Windows File Server during lab setup has already been replicated to Nutanix Files.
 
-.. note::
+   .. note::
 
-  You can also verify the replicated files in **Prism > File Server**.
+     You can also verify the replicated files in **Prism > File Server**.
 
-Open a second File Explorer and browse to your Windows File Server share, e.g. ``\\Initials-PeerAgentB-IP\Data``. Drag this window to the right side of the desktop.
+#. Open a second File Explorer and browse to your Windows File Server share, e.g. ``\\Initials-PeerAgentB-IP\Data``. Drag this window to the right side of the desktop.
 
-.. figure:: images/30.png
+   .. figure:: images/30.png
 
-In the File Explorer on the left, create a copy of one of the sample data directories by copying and pasting within the root of the share (shown below).
+#. In the File Explorer on the left, create a copy of one of the sample data directories by copying and pasting within the root of the share (shown below).
 
-.. figure:: images/31.png
+   .. figure:: images/31.png
 
-.. figure:: images/32.png
+   .. figure:: images/32.png
 
-The changes that are performed on the Nutanix Files share will be sent to its paired Agent, the Agent will then facilitate the replication of these files and folders to the other server (and vice versa).
+#. The changes that are performed on the Nutanix Files share will be sent to its paired Agent, the Agent will then facilitate the replication of these files and folders to the other server (and vice versa).
 
-.. figure:: images/33.png
+   .. figure:: images/33.png
 
-To test file locking, create a new OpenDocument Text file within the root of your Nutanix Files share, e.g. ``\\Initials-Files\Initials-Peer``.
+#. To test file locking, create a new OpenDocument Text file within the root of your Nutanix Files share, e.g. ``\\Initials-Files\Initials-Peer``.
 
-.. figure:: images/34.png
+   .. figure:: images/34.png
 
-Give the file a name. Within a few seconds, it should appear under your Windows File Server share, e.g. ``\\Initials-PeerAgentB-IP\Data``.
+#. Give the file a name. Within a few seconds, it should appear under your Windows File Server share, e.g. ``\\Initials-PeerAgentB-IP\Data``.
 
-.. figure:: images/35.png
+   .. figure:: images/35.png
 
-Open the file under the Nutanix Files share with OpenOffice Writer. Then open the file by the same name under ``\\Initials-PeerAgentB-IP\Data``. You should see the following warning that the file is locked.
+#. Open the file under the Nutanix Files share with OpenOffice Writer. Then open the file by the same name under ``\\Initials-PeerAgentB-IP\Data``. You should see the following warning that the file is locked.
 
-.. figure:: images/36.png
+   .. figure:: images/36.png
 
-**Congratulations!** You have successfully deployed an Active-Active file share replicated across 2 sites. Using Peer, this same approach can be leveraged to support file collaboration across sites, migrations from legacy solutions to Nutanix Files, or disaster recovery for use cases such as VDI, where user data and profiles need to be accessible from multiple sites for business continuity.
+   **Congratulations!** You have successfully deployed an Active-Active file share replicated across 2 sites. Using Peer, this same approach can be leveraged to support file collaboration across sites, migrations from legacy solutions to Nutanix Files, or disaster recovery for use cases such as VDI, where user data and profiles need to be accessible from multiple sites for business continuity.
 
 Integrating with Microsoft DFS Namespace
 ++++++++++++++++++++++++++++++++++++++++
@@ -602,7 +601,7 @@ The following screenshot shows the PMC with a DFS Namespace under management.
 
 While this lab is not designed to showcase DFS Namespace management, we encourage you to reach out to us on Slack via the **#_peer_software_ext** channel for more information. We are happy to give you NFR licenses for your own lab and can walk you through DFS-N integration.
 
-(Optional) Analyzing Existing Environments
+Analyzing Existing Environments
 ++++++++++++++++++++++++++++++++++++++++++
 
 As the capacity of file server environments increase at a record pace, storage admins often do not know how users and applications are leveraging these file server environments. This fact becomes most evident when it is time to migrate to a new storage platform. The File System Analyzer is a tool from Peer Software that is designed to help partners discover and analyze existing file and folder structures for the purpose of planning and optimization.
@@ -611,78 +610,81 @@ The File System Analyzer performs a very fast scan of one or more specified path
 
 As this tool is primarily for our partners, we would love to hear any feedback you have on it. Reach out to us on Slack via the **#_peer_software_ext** channel with comments and suggestions.
 
-Connect to your *Initials*\ -**PeerAgentA** VM on your **Primary** cluster via RDP or VM console using the following credentials:
+#. Connect to your *Initials*\ -**PeerAgentA** VM on your **Primary** cluster via RDP or VM console using the following credentials:
 
-- **Username** - NTNXLAB\\Administrator
-- **Password** - nutanix/4u
+   - **Username** - NTNXLAB\\Administrator
+   - **Password** - nutanix/4u
 
-Within the VM, download the File System Analyzer installer: https://www.peersoftware.com/downloads/fsa/FileSystemAnalyzer_Installer_v1.1.3.4.exe.
+#. Within the VM, download the File System Analyzer installer: https://www.peersoftware.com/downloads/fsa/FileSystemAnalyzer_Installer_v1.1.3.4.exe.
 
-Run the installer and select **Standard Installation**.
+#. Run the installer and select **Standard Installation**.
 
-.. figure:: images/fsa1.png
+   .. figure:: images/fsa1.png
 
-Once the installation is complete, the File System Analyzer wizard will automatically be launched.
+   Once the installation is complete, the File System Analyzer wizard will automatically be launched.
 
-The **Introduction** screen provides details on information collected and reported by the utility. Click **Next**.
+#. The **Introduction** screen provides details on information collected and reported by the utility. Click **Next**.
 
-.. figure:: images/fsa2.png
+   .. figure:: images/fsa2.png
 
-The **Contact Information** screen collects information used to organize the output of the File System Analyzer and to send the final reports. Fill out the following fields:
+#. The **Contact Information** screen collects information used to organize the output of the File System Analyzer and to send the final reports. Fill out the following fields:
 
-- **Company** – Enter your company name.
-- **Location** – Enter the physical location of the server that is running the File System Analyzer. In multi-site environments, this could be a city or state name. A data center name also works.
-- **Project** – Enter a project name or business reason for running this analysis. This (and the Company and Location fields) are strictly used to organize the final reports.
-- **Name/Phone/Title** – *Optionally* enter your name and contact information.
-- **Email** – Enter the email address to which the final reports will be sent. This can include more than one address in a comma separated list.
-- **Upload Region** – Select US, EU, or APAC to tell the File System Analyzer which S3 location to use for uploading the final reports.
+   - **Company** – Enter your company name.
+   - **Location** – Enter the physical location of the server that is running the File System Analyzer. In multi-site environments, this could be a city or state name. A data center name also works.
+   - **Project** – Enter a project name or business reason for running this analysis. This (and the Company and Location fields) are strictly used to organize the final reports.
+   - **Name/Phone/Title** – *Optionally* enter your name and contact information.
+   - **Email** – Enter the email address to which the final reports will be sent. This can include more than one address in a comma separated list.
+   - **Upload Region** – Select US, EU, or APAC to tell the File System Analyzer which S3 location to use for uploading the final reports.
 
-.. figure:: images/fsa3.png
+   .. raw:: html
 
-Click **Next**.
+     <strong><font color="red">Be sure to enter your own details into the wizard page shown below. Otherwise, the final report will not be sent to you.</font></strong>
 
-The File System Analyzer can be configured to scan one or more paths. These paths can be local (e.g. ``D:\MyData``) or a remote UNC Path (e.g. ``\\files01\homes1``).
+   .. figure:: images/fsa3.png
 
-Add the following paths:
+#. Click **Next**.
 
-- ``C:\`` - The local C: drive of *Initials*\ -**PeerAgentA**
-- ``\\<Initials>-Files\<Initials>-Peer\`` - The share previously created on your Files cluster
+   The File System Analyzer can be configured to scan one or more paths. These paths can be local (e.g. ``D:\MyData``) or a remote UNC Path (e.g. ``\\files01\homes1``).
 
-.. figure:: images/fsa4.png
+#. Add the following paths:
 
-Click **Next**.
+   - ``C:\`` - The local C: drive of *Initials*\ -**PeerAgentA**
+   - ``\\<Initials>-Files\<Initials>-Peer\`` - The share previously created on your Files cluster
 
-The File System Analyzer will automatically begin scanning the entered paths. When all scans, analyses, and uploads are complete, you will see a status that is similar to the following:
+   .. figure:: images/fsa4.png
 
-.. figure:: images/fsa5.png
+#. Click **Next**.
 
-File System Analyzer will also e-mail the report to all configured addresses. To view the full report, click the hyperlink(s) listed under **Detailed Reports** in the e-mail. If multiple paths were scanned, you will also see a link to a cumulative report across all paths.
+   The File System Analyzer will automatically begin scanning the entered paths. When all scans, analyses, and uploads are complete, you will see a status that is similar to the following:
 
-.. figure:: images/fsa6.png
+   .. figure:: images/fsa5.png
 
-.. note::
+#. File System Analyzer will also e-mail the report to all configured addresses. To view the full report, click the hyperlink(s) listed under **Detailed Reports** in the e-mail. If multiple paths were scanned, you will also see a link to a cumulative report across all paths.
 
-  Report download links are only active for **24 hours**. Contact Peer Software to access any expired reports.
+   .. figure:: images/fsa6.png
 
-The full report contains the following information:
+   .. note::
 
-- **InfoSheet** – Details about this specific scan.
-- **OverallStats** – Overall statistics for the folder that was scanned. This includes total bytes, files, folders, etc.
-- **FileExtSize** – A list of all discovered extensions, sorted by total bytes.
-- **FileExtCount** – A list of all discovered extensions, sorted by total files.
-- **TreeDepth** – A tally of bytes, folders, and files found at each depth level of the folder structure.
-- **ReparsePoints** – A list of all folder reparse points discovered.
-- **ReparsePointsSummary** – A summary of all reparse points discovered, regardless of file or folder.
-- **HighSubFolderCounts** – A list of all folders containing more than 1000 child directories.
-- **HighByteCounts** – A list of all folders containing more than 100GB of child file data.
-- **HighFileCounts** – A list of all folders containing more than 10,000 child files.
-- **LargeFiles** – A list of all discovered files that are 10GB or larger.
-- **FileAttributes** – A summary of all file and folder attributes found.
-- **TimeAnalysis** – A breakdown of total files, folders, and bytes by age.
-- **TLDAnalysis** - A list of each folder immediately under a specified path with statistics for each of these subfolders. In a user home directory environment, each of these subfolders should represent a different user.
+     Report download links are only active for **24 hours**. Contact Peer Software to access any expired reports.
 
-.. figure:: images/fsa7.png
+   The full report contains the following information:
 
+   - **InfoSheet** – Details about this specific scan.
+   - **OverallStats** – Overall statistics for the folder that was scanned. This includes total bytes, files, folders, etc.
+   - **FileExtSize** – A list of all discovered extensions, sorted by total bytes.
+   - **FileExtCount** – A list of all discovered extensions, sorted by total files.
+   - **TreeDepth** – A tally of bytes, folders, and files found at each depth level of the folder structure.
+   - **ReparsePoints** – A list of all folder reparse points discovered.
+   - **ReparsePointsSummary** – A summary of all reparse points discovered, regardless of file or folder.
+   - **HighSubFolderCounts** – A list of all folders containing more than 1000 child directories.
+   - **HighByteCounts** – A list of all folders containing more than 100GB of child file data.
+   - **HighFileCounts** – A list of all folders containing more than 10,000 child files.
+   - **LargeFiles** – A list of all discovered files that are 10GB or larger.
+   - **FileAttributes** – A summary of all file and folder attributes found.
+   - **TimeAnalysis** – A breakdown of total files, folders, and bytes by age.
+   - **TLDAnalysis** - A list of each folder immediately under a specified path with statistics for each of these subfolders. In a user home directory environment, each of these subfolders should represent a different user.
+
+   .. figure:: images/fsa7.png
 
 Takeaways
 +++++++++
@@ -699,7 +701,7 @@ Takeaways
 
 - The latest Peer prerequisities for Nutanix Files can be found `here <https://kb.peersoftware.com/tb/nutanix-files-prerequisites>`_.
 
-- An in-dept Peer/Nutanix battlecard can be found `here <https://gpnportal.peersoftware.com/engage/peer-nutanix-battle-card-for-nutanix-files-afs/?sales_rep=aVFZUU9VZDVvbWZFNGhCTDBmM2lMZz09>`_.
+- An in-depth Peer/Nutanix battlecard can be found `here <https://gpnportal.peersoftware.com/engage/peer-nutanix-battle-card-for-nutanix-files-afs/?sales_rep=aVFZUU9VZDVvbWZFNGhCTDBmM2lMZz09>`_.
 
 - NFR licenses are available for lab environments. Reach out via the #_peer_software_ext Slack channel to request one.
 
@@ -710,7 +712,7 @@ Cleanup
 
   <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
 
-Delete your *Initials*\ **-PeerAgentA**, *Initials*\ **-PeerAgentB**, and *Initials*\ **-PeerMgmt** VMs.
+Delete your *Initials*\ **-PeerAgentA**, *Initials*\ **-PeerAgentB**, and *Initials*\ **-PeerMgmt** VMs. If you have already completed, or do not plan to complete, the :ref:`hycu` lab, you can also delete your Nutanix Files deployment.
 
 Getting Connected
 +++++++++++++++++
@@ -731,4 +733,4 @@ Have a question about **Nutanix + Peer Software**? Please reach out to the resou
 |  Alliance Manager              | Abbas Sura, abbas.sura@nutanix.com             |
 +--------------------------------+------------------------------------------------+
 
-Looking to get connected with your **Peer Software** field counterpart? Reach out to kevinh@peersoftware.com.
+Looking to get connected with your **Peer Software** field counterpart? Reach out to mattm@peersoftware.com.

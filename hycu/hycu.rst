@@ -527,6 +527,8 @@ Backing Up & Restoring Files
 
 Backup and restore for Files operates very similarly to VM/VG workflows, using the same customizable policies and owner/self-service constructs.
 
+#. Add the SMB target you created, **Files-HYCUTarget** into customized **Fast** policy.
+
 #. From the **HYCU** sidebar, click :fa:`bars` **> Shares**.
 
 #. Select the **Marketing** share and click **(Shield Icon) Policies**.
@@ -597,7 +599,7 @@ Cleanup
 
   <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
 
-Delete your *Initials*\ **-HYCUBackupTest** and *Initials*\ **-HYCUBackupTest-Clone** VMs.
+Delete your *Initials*\ **-HYCUBackupTest** and *Initials*\ **-HYCUBackupTest-Clone** VMs. If you have already completed, or do not plan to complete, the :ref:`peer` lab, you can also delete your Nutanix Files deployment.
 
 Getting Connected
 +++++++++++++++++
