@@ -1,3 +1,6 @@
+.. role:: html(raw)
+   :format: html
+
 .. _xtract_aws:
 
 -----------
@@ -15,7 +18,7 @@ As customers adopt Nutanix AHV, they require a means of moving existing workload
 
 .. raw:: html
 
-  <strong><font color="red">This lab does require you to sign up for your own AWS Free Tier account. While there should be no charges incurred for the EC2 instances provisioned as part of the lab, signing up for an account does require you to provide a credit card and phone number for verification.</font></strong>
+  <strong><font color="red">This lab does require you to sign up for your own AWS Free Tier account. Signing up for an account requires you to provide a credit card and phone number for verification. The approximate, non-reimbursable cost to run the lab is $1 USD.</font></strong>
 
 Staging the AWS Environment
 +++++++++++++++++++++++++++
@@ -29,10 +32,6 @@ Signing up for a new AWS account provides free, limited access to a number of AW
 #. Follow the prompts to create a **Personal** account with a **Basic** (Free) support plan.
 
    .. figure:: images/1.png
-
-   .. note::
-
-    This lab does require you to sign up for your own AWS Free Tier account. While there should be no charges incurred for the EC2 instances provisioned as part of the lab, signing up for an account does require you to provide a credit card and phone number for verification.
 
 #. After completing your account sign up, log in to the `AWS Management Console <https://aws.amazon.com/console/>`_.
 
@@ -66,7 +65,7 @@ Signing up for a new AWS account provides free, limited access to a number of AW
     For future tests/demonstrations, if you wish to migrate a Windows Server image instead of a Linux image, be aware of the following:
 
     - Select an appropriate instance type. Running Windows Server 2012 R2+ requires more resources than a t2.micro can offer.
-    - WinRM must be enabled on the source VM as PowerShell Remoting is used for remote installation of the **virtio** drivers on the source VM. Instructions for enabling WinRM on can be found in the Xtract User Guide `here <https://portal.nutanix.com/#/page/docs/details?targetId=Xtract-for-VMs-v20:v20-xtract-enable-winrm-t.html#ntask_mj1_xxw_cgb>`_. Alternatively, the VM can be manually prepared.
+    - WinRM must be enabled on the source VM as PowerShell Remoting is used for remote installation of the **virtio** drivers on the source VM. Instructions for enabling WinRM on can be found in the Move User Guide `here <https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Move-v30:Nutanix-Move-v30>`_. Alternatively, the VM can be manually prepared.
     - You must add Inbound Rules for the instance Security Policy to allow TCP ports 5985 and 5986 for WinRM.
 
    The CPU, memory, storage, and networking profile of the instance are defined by the **instance type**.
@@ -111,7 +110,7 @@ Signing up for a new AWS account provides free, limited access to a number of AW
 
    .. figure:: images/6.png
 
-#. Specify a **User name** (e.g. **Xtract**) and select **Programmatic access** as this will be used purely as a service account.
+#. Specify a **User name** (e.g. **NutanixMove**) and select **Programmatic access** as this will be used purely as a service account.
 
 #. Click **Next: Permissions**.
 
@@ -168,17 +167,19 @@ Signing up for a new AWS account provides free, limited access to a number of AW
 
      The permissions above provide the bare minimum access required by Move to migrate the resources. In a product environment, the **Resource** node could be further constrained to only allow Move access to very specific EC2 resources.
 
-     The permission requirements are documented in the Xtract User Guide `here <https://portal.nutanix.com/#/page/docs/details?targetId=Xtract-for-VMs-v20:v20-xtract-requirements-aws-r.html>`_.
+     The permission requirements are documented in the Move User Guide `here <https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Move-v30:Nutanix-Move-v30>`_.
 
-#. Click **Review policy**, provide a **Name** (e.g. XtractPolicy), and click **Create policy**.
+#. Click **Review policy**, provide a **Name** (e.g. MovePolicy), and click **Create policy**.
 
-#. Return to the **Add user** browser tab to search for and select your newly created policy.
+#. Return to the **Add user** browser tab to search for and select your newly created policy. You may need to click :fa:`refresh` to refresh the table.
 
    .. figure:: images/7.png
 
-#. Click **Next: Tags > Next: Review > Create user**. **DO NOT CLICK CLOSE YET**.
+#. Click **Next: Tags > Next: Review > Create user**. :html:`<strong><font color="red">Do not click Close yet!</font></strong>`
 
 #. Click the **Download .csv** button to save a copy of the **Access key ID** and **Secret access key**. Once you click **Close**, the .csv file will be the only record of the secret key.
+
+   .. figure:: images/7b.png
 
 #. Click **Close**.
 
@@ -208,7 +209,7 @@ In this exercise, you will deploy Move from a disk image that has already been p
    - Select **+ Add New Disk**
        - **Type** - DISK
        - **Operation** - Clone from Image Service
-       - **Image** - xtract-vm-\*.qcow2
+       - **Image** - move-\*.qcow2
        - Select **Add**
 
    - Select **Add New NIC**
@@ -223,7 +224,7 @@ In this exercise, you will deploy Move from a disk image that has already been p
 
    .. note::
 
-     By default, the Move appliance will obtain an IP address via DHCP. If a static IP address is required, it can be configured via the local Move VM console by following the instructions `here <https://portal.nutanix.com/#/page/docs/details?targetId=Xtract-for-VMs-v20:v20-xtract-assign-ip-addresses-t.html#ntask_vlz_f1t_f1b>`_.
+     By default, the Move appliance will obtain an IP address via DHCP. If a static IP address is required, it can be configured via the local Move VM console by following the instructions `here <https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Move-v30:v30-assign-ip-addresses-t.html>`_.
 
 #. Open \https://*Move-VM-IP*/ in a new browser tab.
 
@@ -236,7 +237,7 @@ In this exercise, you will deploy Move from a disk image that has already been p
 Configuring a Target Environment
 ++++++++++++++++++++++++++++++++
 
-The target environment is the Nutanix AHV cluster to which you plan to migrate VMs. A single Move deployment can support migrations between multiple source and target environments.
+The target environment is the Nutanix AHV cluster to which you plan to migrate VMs. A single Move deployment can support migrations between multiple source and target environments. Refer to the `Version Support Matrix <https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Move-v30:v30-supported-versions-r.html>`_ for currently supported target environment AOS versions.
 
 #. Under **Target Environments**, click **+ Add Target**.
 
@@ -256,7 +257,7 @@ Adding a Prism Central target has the added benefit of being able to target any 
 Configuring a Source Environment
 ++++++++++++++++++++++++++++++++
 
-The source environment is the ESXi or AWS environment from which you plan to migrate VMs.
+The source environment is the ESXi, Hyper-V, or AWS environment from which you plan to migrate VMs. Refer to the `Version Support Matrix <https://portal.nutanix.com/#/page/docs/details?targetId=Nutanix-Move-v30:v30-supported-versions-r.html>`_ for currently supported source environment ESXi and Hyper-V versions.
 
 In order to add an AWS source, you will require the **Access Key ID** and **Secret Access Key** values from the **credentials.csv** downloaded while staging your source environment.
 
@@ -300,15 +301,17 @@ Migrating VMs
 
 #. Click **Next**.
 
-   As indicated earlier in the UI, Move will provision an additional t2.micro instance in the source EC2 Region (e.g. US-EAST-1). The **Xtract Lite** VM is used to establish a secure connection between the Move appliance and the source AWS VMs, working with AWS APIs to take snapshots and transfer data from source to target.
+   As indicated earlier in the UI, Move will provision an additional t2.micro instance in the source EC2 Region (e.g. US-EAST-1). As shown below, the **Move Agent** VM is used to establish a secure connection between the Move appliance and the source AWS VMs, working with AWS APIs to take snapshots and transfer data from source to target.
 
-#. Refresh your **EC2 Dashboard** and note that **NTNX-XTRACTLITE-INSTANCE** has been automatically deployed and started. This process should take ~2 minutes.
+   .. figure:: images/movearchitecture.png
+
+#. Refresh your **EC2 Dashboard** and note that **NTNX-MOVE-AGENT** has been automatically deployed and started. This process should take ~2 minutes.
 
    .. figure:: images/14.png
 
-   Once **Xtract Lite** is ready, you will be able to proceed with providing credentials for the source VMs.
+   Once the **Move Agent** is ready, you will be able to proceed with providing credentials for the source VMs.
 
-   By default, **automatic** VM Preparation is selected. VM Preparation refers to installing the **virtio** drivers within the source VM prior to migration beginning. The **virtio** drivers provide a high performance I/O interface for disk and network devices on KVM, and allow VMs that were originally deployed on an alternate hypervisor to boot on AHV.
+   By default, **Manual** Preparation Mode is selected. VM preparation refers to installing the **virtio** drivers within the source VM prior to migration beginning. The **virtio** drivers provide a high performance I/O interface for disk and network devices on KVM, and allow VMs that were originally deployed on an alternate hypervisor to boot on AHV.
 
    .. note::
 
@@ -317,6 +320,8 @@ Migrating VMs
    .. note::
 
      VMs can be manually prepared by an administrator if they wish to avoid providing Move with guest credentials to allow for automatic installation of **virtio** drivers.
+
+#. Under **Preparation Mode**, select **Automatic**.
 
 #. Under **Linux VMs**, specify **ubuntu** as the **User Name** for the Ubuntu AMI.
 
@@ -398,21 +403,21 @@ The following steps should be taken to prevent any unexpected AWS charges.
 
 #. Return to **Move**, under **Migration Plans**, select **Action > Delete > Continue** to remove your completed AWS Migration Plan.
 
-   Once the final migration plan configured for a given AWS region has been removed, Move will automatically power down the Xtract Lite VM.
+   Once the final migration plan configured for a given AWS region has been removed, Move will automatically power down the Move Agent VM.
 
-#. Return to your **EC2 Dashboard** and verify that **NTNX-XTRACTLITE-INSTANCE** has been stopped.
+#. Return to your **EC2 Dashboard** and verify that **NTNX-MOVE-AGENT** has been stopped.
 
 #. Return to **Move**, under **Source Environments**, select **... > Remove > Remove** to remove your AWS source environment.
 
-   Once the source has been removed, Move will automatically terminate (delete) the **NTNX-XTRACTLITE-INSTANCE** for that region.
+   Once the source has been removed, Move will automatically terminate (delete) the **NTNX-MOVE-AGENT** for that region.
 
-#. Return to your **EC2 Dashboard** and verify that **NTNX-XTRACTLITE-INSTANCE** has been terminated.
+#. Return to your **EC2 Dashboard** and verify that **NTNX-MOVE-AGENT** has been terminated.
 
 #. You can now terminate your source Ubuntu instance by right-clicking the instance and selecting **Instance State > Terminate > Yes, Terminate**.
 
    .. figure:: images/22.png
 
-#. Finally, under **AWS Services > Route 53**, delete the **xtract.com.** Private Hosted Zone created automatically during Move deployment.
+#. Finally, under **AWS Services > Route 53**, delete the **move.com.** Private Hosted Zone created automatically during Move deployment.
 
    .. figure:: images/23.png
 
