@@ -1,3 +1,6 @@
+.. role:: html(raw)
+   :format: html
+
 .. _clusterinfo:
 
 --------------------
@@ -9,11 +12,11 @@ Your Cluster Details
 Cluster Assignments
 +++++++++++++++++++
 
-Refer to **YOUR NAME** in the table below for all critical environmental information, including IP addresses that you will use to complete the self-paced labs. **Please ensure you are using only the cluster details you have been assigned in order to not create issues for other participants.**
+Refer to **YOUR NAME** in the table below for all critical environmental information, including IP addresses that you will use to complete the self-paced labs.
 
-.. raw:: html
+**Please ensure you are using ONLY the cluster details you have been assigned in order to not create issues for other participants. When prompted during a lab, you will create resources using YOUR OWN initials (or name) to avoid duplicate, confusing resource names. For example, if your name is Dheeraj Danger Pandey, and you were creating a VM called VM1, you would name the VM DDP-VM1 (not XYZ-VM1).**
 
-  <iframe width="99%" height="450" frameborder="0" scrolling="no" src="https://nutanixinc-my.sharepoint.com/:x:/g/personal/matthew_bator_nutanix_com/EZ1ixb2RUHlBhZSq373eJLEBYmpuiQ6R1Bbn8PrHbsFKbw?e=f9qRHk&action=embedview&ActiveCell='APAC'!A1&Item='APAC'!A1%3AO289&wdDownloadButton=True&wdInConfigurator=True"></iframe>
+:html:`<iframe width="99%" height="450" frameborder="0" scrolling="no" src="https://nutanixinc-my.sharepoint.com/:x:/g/personal/matthew_bator_nutanix_com/EZ1ixb2RUHlBhZSq373eJLEBYmpuiQ6R1Bbn8PrHbsFKbw?e=f9qRHk&action=embedview&ActiveCell='EMEA'!A1&Item='EMEA'!A1%3AO319&wdDownloadButton=True&wdInConfigurator=True"></iframe>`
 
 .. note::
 
@@ -48,7 +51,7 @@ The following VMs have already been provisioned to each cluster:
      - Description
    * - **Prism Central**
      - 10.XX.YY.39
-     - Nutanix Prism Central 5.10.1
+     - Nutanix Prism Central 5.10.1, Calm 2.6.0.3
    * - **AutoDC2**
      - 10.XX.YY.40
      - ntnxlab.local Domain Controller
@@ -76,8 +79,8 @@ All disk images required to complete the labs have been uploaded to the Image Se
      - CentOS Kubernetes Host for Karbon Disk Image
    * - **ERA-Server-build-1.0.1.qcow2**
      - Era 1.0.1 Disk Image
-   * - **xtract-vm-2.0.3.qcow2**
-     - Xtract for VMs 2.0.3 Disk Image
+   * - **move-3.0.1.qcow2**
+     - Move 3.0.1 Disk Image
    * - **hycu-3.5.0-6253.qcow2**
      - HYCU 3.5.0 Appliance Disk Image
    * - **sherlock-k8s-base-image_403.qcow2**
@@ -143,6 +146,4 @@ The following virtual networks have been pre-configured for each cluster:
      - 10.XX.YY.40 (DC VM)
      - 10.XX.YY.40 (DC VM)
 
-.. raw:: html
-
-  <strong><font color="red">With 5-6 participants sharing each physical cluster, there is limited system memory and ~30 IP addresses available per participant. Refer to the CLEANUP section at the end of each lab for direction on VMs that can be removed before proceeding to your next lab. THANK YOU!</font></strong>
+:html:`<strong><font color="red">With 5-6 participants sharing each physical cluster, there is limited system memory and ~30 IP addresses available per participant. Refer to the CLEANUP section at the end of each lab for direction on VMs that can be removed before proceeding to your next lab. THANK YOU!</font></strong>`
