@@ -53,12 +53,14 @@ Configuring HYCU Appliance
 
    The secondary disk added to the appliance is used as a data disk for the local HYCU database as well as maintenance operations. It is not used for storing VM backup data.
 
-#. Once the VM has started, note the IP Address assigned by IPAM DHCP and click **Launch Console**.
+#. Once the VM has started, note the IP Address assigned by IPAM DHCP in Prism.
+
+#. Click **Launch Console**.
 
 #. Fill out the following fields, highlight **OK** and press **Return**:
 
    - **Hostname** - *Initials*\ **-HYCU**
-   - **IPv4 address** - *IP Assigned by DHCP*
+   - **IPv4 address** - *Specify the IP Assigned by IPAM DHCP*
    - **Subnet mask** - 255.255.255.128
    - **Default gateway** - *Secondary VLAN Gateway* (e.g. 10.XX.YY.129)
    - **DNS server** - *Your DC VM IP*
