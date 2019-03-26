@@ -55,12 +55,18 @@ Signing up for a new AWS account provides free, limited access to a number of AW
 
    .. note::
 
-    Move has qualified support for the following 64-bit guest operating systems for migration from AWS:
+      If **no results** are found in your default region, select the **N. Virginia** region from the toolbar and search again.
 
-    - Windows Server 2012 R2, 2016
-    - RHEL 7.3 to 7.5
-    - CentOS 7.3 to 7.5
-    - Ubuntu 14.04, 16.04, and 18.04
+      .. figure:: images/3c.png
+
+   Move has qualified support for the following 64-bit guest operating systems for migration from AWS:
+
+   - Windows Server 2012 R2, 2016
+   - RHEL 7.3 to 7.5
+   - CentOS 7.3 to 7.5
+   - Ubuntu 14.04, 16.04, and 18.04
+
+   .. note::
 
     For future tests/demonstrations, if you wish to migrate a Windows Server image instead of a Linux image, be aware of the following:
 
@@ -78,7 +84,7 @@ Signing up for a new AWS account provides free, limited access to a number of AW
 
    A `VPC <https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html>`_ is a virtual network dedicated to your AWS account that is logically isolated from other AWS virtual networks. Within a VPC you can define your own subnets and routing, as well as choose whether or not a subnet has `access to the internet <https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html#d0e22943>`_.
 
-	In order to migrate a VM from AWS using Move, the source VM must have a public IP configured.
+   In order to migrate a VM from AWS using Move, the source VM must have a public IP configured.
 
 #. Click **Launch** to deploy the instance.
 
