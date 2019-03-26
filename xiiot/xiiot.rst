@@ -74,7 +74,7 @@ Xi Edge can be deployed as a virtual machine on AHV and ESXi, or bare metal on s
    - Select **Custom Script**
    - Select **Type or Paste Script**
 
-   .. code-block::
+   .. code-block:: bash
      :caption: Paste this script
 
      #cloud-config
