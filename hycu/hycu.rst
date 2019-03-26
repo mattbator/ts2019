@@ -276,7 +276,7 @@ In this exercise you will back up a Windows Server VM with a mounted iSCSI Volum
 
    - **Name** - *Initials*\ -BackupTestVG
    - **iSCSI Target Name Prefix** - *Initials*\ -HYCU-Target
-   - **Description** - HYCU Target VG
+   - **Description** - VG attached to HYCUBackupTest VM
    - Select **+ Add New Disk**
 
      - **Storage Container** - Default
@@ -398,7 +398,13 @@ Restoring Backups
 
    *Congratulations! You've just restored your first VM and volume group using HYCU.*
 
-#. In **Prism > VM > Table**, delete your *Initials*\ **-HYCUBackupTest-Clone** VM and **then** power on your original *Initials*\ **-HYCUBackupTest** VM.
+#. In **Prism > VM > Table**, delete both your *Initials*\ **-HYCUBackupTest-Clone** VM and the cloned *Initials*\ **-BackupTestVG-**\ *Timestamp* Volume Group.
+
+   .. note::
+
+      If the Volume Group fails to delete due to having attachments, **Update** the Volume Group and de-select the *Initials*\ **-HYCUBackupTest-Clone** VM IQN under **Clients**. Click **Save** and attempt to delete the Volume Group again.
+
+#. Power on your original *Initials*\ **-HYCUBackupTest** VM.
 
 #. From the **HYCU** sidebar, click :fa:`bars` **> Jobs** and note the time required to perform the VM restore.
 
