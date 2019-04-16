@@ -13,13 +13,9 @@ Xi IoT
 Overview
 ++++++++
 
-The Nutanix Xi IoT platform delivers local compute and AI for IoT edge devices, converging the edge and cloud into one seamless data processing platform.
-The Xi IoT platform eliminates complexity, accelerates deployments, and elevates developers to focus on the business logic powering IoT applications and services.
-Now developers can use a low-code development platform to create application software via APIs instead of arduous programming methods.
+The Nutanix Xi IoT platform delivers local compute and AI for IoT edge devices, converging the edge and cloud into one seamless data processing platform. The Xi IoT platform eliminates complexity, accelerates deployments, and elevates developers to focus on the business logic powering IoT applications and services. Now developers can use a low-code development platform to create application software via APIs instead of arduous programming methods.
 
-**In this lab you’ll deploy an application called “Facefeed” using the Xi IoT SaaS control plane.
-The application and its data pipelines are deployed to a virtual Xi Edge device running as a virtual machine on your local cluster.
-This application ingests a video stream using the real time streaming protocol (RTSP), and uses machine learning to detect known faces.**
+**In this lab you’ll deploy an application called “Facefeed” using the Xi IoT SaaS control plane. The application and its data pipelines are deployed to a virtual Xi Edge device running as a virtual machine on your local cluster. This application ingests a video stream using the real time streaming protocol (RTSP), and uses machine learning to detect known faces.**
 
 Accessing Xi IoT
 ++++++++++++++++
@@ -475,15 +471,6 @@ What are the key things you should know about **Nutanix Xi IoT**?
 - Developer APIs and pluggable architecture enables bring your own framework and functions for simplified integrations without having to rewrite your code.
 
 - Additional information and content is available internally on the `Xi IoT page in Seismic <https://nutanix.seismic.com/X5/doccenter.aspx#/doccenter/3d301e27-091a-48d7-8289-723f1c5da5da/doc/%252Fddfc05babc-f097-4734-9e68-e955f90ce169%252Flf7de8bc77-7e57-49a7-b654-02b5156d81cf//?mode=view>`_ .
-
-Cleanup
-+++++++
-
-.. raw:: html
-
-  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
-
-Delete your *Initials* **-Edge** VM.
 
 Getting Connected
 +++++++++++++++++

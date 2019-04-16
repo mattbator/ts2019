@@ -78,7 +78,7 @@ View the Object Storage Services
 
 #. Select :fa:`bars` **> Services > Buckets**.
 
-   View the existing Object Store and take a note of the name and IP.
+   View the existing Object Stores. You will be using the techsummit2019 Object Store throughout this lab.
 
 #. Select :fa:`bars` **> Virtual Infrastructure > VMs**.
 

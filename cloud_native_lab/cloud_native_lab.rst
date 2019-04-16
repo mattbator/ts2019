@@ -203,8 +203,8 @@ Review buckets-secret.yaml File
 
    .. code-block:: powershell
 
-     [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("ACCESS-KEY-STRING"))
-     [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("SECRET-KEY-STRING"))
+     [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("base64-encoded-string-from-yaml-file-for-access-key"))
+     [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("base64-encoded-string-from-yaml-file-for-secret-key"))
 
    .. figure:: images/buckets_create3.png
 

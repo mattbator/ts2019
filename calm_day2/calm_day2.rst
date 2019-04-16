@@ -332,15 +332,6 @@ What are the key things you should know about **Nutanix Calm**?
 
 - What operation are you currently doing on a regular basis?  It's likely that it can be modeled in Calm, saving you countless hours.  Take back your weekend!
 
-Cleanup
-+++++++
-
-.. raw:: html
-
-  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
-
-Delete your application deployment in Calm.
-
 Getting Connected
 +++++++++++++++++
 

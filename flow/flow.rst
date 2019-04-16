@@ -198,7 +198,7 @@ While you wait for the Task Manager application to be deployed from the Calm blu
 
    .. figure:: images/27.png
 
-#. lick **AppTier:**\ *Initials*-**TMLB** and select **No** to prevent communication between VMs in this tier. There is only a single load balancer VM within the tier.
+#. Click **AppTier:**\ *Initials*-**TMLB** and select **No** to prevent communication between VMs in this tier. There is only a single load balancer VM within the tier.
 
 #. While **AppTier:**\ *Initials*-**TMLB** is still selected, click the :fa:`plus-circle` icon to the right of **AppTier:**\ *Initials*-**TMWeb** to create a tier to tier rule.
 
@@ -534,15 +534,6 @@ What are the key things you should know about **Nutanix Flow**?
 - Security Policies are evaluated in order, and this precedence allows for creation of complex policies.
 
 - Calm can use Categories created in Prism Central to automatically deploy VMs into a pre-existing security policy by default.
-
-Cleanup
-+++++++
-
-.. raw:: html
-
-  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
-
-If you do **NOT** intend to complete the :ref:`epoch` lab, delete your application deployment in Calm. Otherwise the same deployment can be used, but be sure to change your security policy back to **Monitor** mode.
 
 Getting Connected
 +++++++++++++++++

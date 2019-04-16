@@ -338,15 +338,6 @@ What are the key things you should know about **Nutanix Xi Epoch**?
 
 - Additional internal resources for Epoch are available `here <https://nutanixinc.sharepoint.com/sites/EpochHome36>`_.
 
-Cleanup
-+++++++
-
-.. raw:: html
-
-  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
-
-If you do **NOT** intend to complete the :ref:`flow` lab, delete your application deployment in Calm, otherwise the same deployment can be used.
-
 Getting Connected
 +++++++++++++++++
 

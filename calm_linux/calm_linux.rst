@@ -354,7 +354,7 @@ You will now follow similar steps to define a web server service.
    - **Name** - WebServerAHV
    - **Cloud** - Nutanix
    - **OS** - Linux
-   - **VM Name** - @@{User_initials}@@-WebServer-@@{calm_array_index}@@-@@{calm_time}@@
+   - **VM Name** - @@{User_initials}@@-WebServer-@@{calm_array_index}@@
    - **Image** - CentOS_7_Cloud
    - **Device Type** - Disk
    - **Device Bus** - SCSI
@@ -511,7 +511,7 @@ To take advantage of a scale out web tier, your application needs to be able to 
    - **Name** - HAPROXYAHV
    - **Cloud** - Nutanix
    - **OS** - Linux
-   - **VM Name** - @@{User_initials}@@-HAProxy-@@{calm_array_index}@@-@@{calm_time}@@
+   - **VM Name** - @@{User_initials}@@-HAProxy-@@{calm_array_index}@@
    - **Image** - CentOS\_7\_Cloud
    - **Device Type** - Disk
    - **Device Bus** - SCSI
@@ -719,15 +719,6 @@ What are the key things you should know about **Nutanix Calm**?
 - Users can quickly provision entire application stacks for production or testing for repeatable results without time lost to manual configuration.
 
 - Interested in using Calm for more app lifecycle operations? Check out the :ref:`calm_day2`!
-
-Cleanup
-+++++++
-
-.. raw:: html
-
-  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
-
-Delete your application deployment in Calm. If you intend to complete the :ref:`calm_day2` lab, do **NOT** delete your blueprint, as you will continue to add actions to your existing blueprint.
 
 Getting Connected
 +++++++++++++++++

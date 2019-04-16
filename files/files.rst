@@ -445,16 +445,7 @@ What are the key things you should know about **Nutanix Files**?
 
 - Interested in Files backup? Check out the :ref:`hycu` lab!
 
-.. - Interested in Active/Active Files deployments? Check out the :ref:`peer` lab!
-
-Cleanup
-+++++++
-
-.. raw:: html
-
-  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
-
-If you do **NOT** intend to complete the :ref:`peer` or :ref:`hycu` labs, you can delete your Files deployment. If you **DO** intend to complete the :ref:`peer` or :ref:`hycu` labs, you will use your existing Files deployment.
+- Interested in Active/Active Files deployments? Check out the :ref:`peer` lab!
 
 Getting Connected
 +++++++++++++++++

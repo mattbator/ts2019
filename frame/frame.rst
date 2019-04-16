@@ -23,18 +23,12 @@ Frame platform as a service makes it easy for customers to respond quickly and e
 
 Because Frame leverages the public cloud, IT administrators can grow and shrink capacity on the fly without having to commit to spending OpEx or CapEx upfront to anticipate possible future growth. With AHV coming soon, IT administrators can keep predictable application/desktop workloads on-premises while putting their variable/seasonal/project-driven workloads in the public cloud. They can also host environments to control access by third-party partners and remote users to specific applications and datasets.
 
-**In this lab you will access a Frame environment similar to Frame Test Drive, allowing you to walk through the same experience as a prospect who has signed up for access to the** `free 2-hour Test Drive <https://fra.me/test-drive>`_. **The environment will allow you to access sample applications, add your own apps, invite users, customize settings, and more.**
+**In this lab you will access a Frame environment using the** `free 2-hour Test Drive <https://fra.me/test-drive>`_. **The environment will allow you to access sample applications, add your own apps, invite users, customize settings, and more.**
 
 Lab Setup
 +++++++++
 
-Specifically for Tech Summit, this lab will **NOT** use the standard Frame Test Drive offering.
-
-A separate environment has been created with pre-provisioned accounts to eliminate the ~15 minute wait when activating a Test Drive account. These accounts will remain active through the end of Global Tech Summit, allowing you to fully explore the environment.
-
-.. raw:: html
-
-  <strong><font color="red">Before beginning the lab, you must see a GTS proctor who will provide you with administrator credentials for a dedicated Frame account.</font></strong>
+Post-GTS you will need to sign up for the `Frame Test Drive <https://fra.me/test-drive>`_ in order to complete this lab. After signing up at the link provided, you will receive a validation email. Once the link in the validation e-mail has been clicked, your environment should be ready within 15 minutes. 
 
 Running Apps & Desktops
 +++++++++++++++++++++++

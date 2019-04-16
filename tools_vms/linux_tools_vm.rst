@@ -87,7 +87,7 @@ Disable the firewall and SELinux by running the following commands:
 Installing Python
 .................
 
-If completing the :ref:`apis` lab using the Linux Tools VM, install Python by running the following commands:
+Install Python by running the following commands:
 
 .. code-block:: bash
 

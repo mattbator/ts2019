@@ -45,14 +45,16 @@ Create a new **SMB** share on your Files cluster named *Initials*\ **-Peer**.
 Peer VMs
 ........
 
-In this exercise you will use Prism Central to stage 3 VMs which will later be used to install Peer software. The **Primary** cluster is the same assigned cluster you have been using for all other labs. Refer to :ref:`clusterassignments` to determine the Prism Central IP for your **Secondary** cluster.
+In this exercise you will use Prism Central to stage 3 VMs which will later be used to install Peer software.
+
+:html:`<font color="red">For the purposes of simplifying the lab setup, you will use the <strong>SAME CLUSTER</strong> as both the <strong>Primary</strong> and <strong>Secondary</strong> clusters. In a real world scenario, these would be separate clusters/sites.</font>`
 
 .. list-table::
    :widths: 20 20 40
    :header-rows: 1
 
    * - **VM Name**
-     - **Nutanix Cluster**
+     - **Location**
      - **Description**
    * - *Initials*\ -**PeerMgmt**
      - Primary
@@ -70,7 +72,7 @@ Once complete, your lab environment will resemble the diagram below:
 
 --------------------------------------------------------------------
 
-#. On your **Primary Prism Central**, select :fa:`bars` **> Virtual Infrastructure > VMs**.
+#. In **Prism Central**, select :fa:`bars` **> Virtual Infrastructure > VMs**.
 
    .. figure:: images/1.png
 
@@ -105,75 +107,16 @@ Once complete, your lab environment will resemble the diagram below:
    - Select **Type or Paste Script**
 
    .. literalinclude:: unattend.xml
-      :caption: PeerMgmt and PeerAgentA Unattend.xml
+      :caption: PeerMgmt, PeerAgentA, and PeerAgentB Unattend.xml
       :language: xml
 
 #. Click **Save** to create the VM.
 
 #. Repeat Steps 2-4 to create a second VM named *Initials*\ **-PeerAgentA**.
 
-#. **Power On** your *Initials*\ **-PeerMgmt** and *Initials*\ **-PeerAgentA** VMs.
+#. Repeat Steps 2-4 to create a second VM named *Initials*\ **-PeerAgentB**.
 
---------------------------------------------------------
-
-#. Log in to your **Secondary Prism Central** and create the following VM:
-
-   - **Name** - *Initials*\ -PeerAgentB
-   - **Description** - (Optional) Description for your VM.
-   - **vCPU(s)** - 2
-   - **Number of Cores per vCPU** - 1
-   - **Memory** - 4 GiB
-
-   - Select **+ Add New Disk**
-       - **Type** - DISK
-       - **Operation** - Clone from Image Service
-       - **Image** - Windows2012R2.qcow2
-       - Select **Add**
-
-   - Select **Add New NIC**
-       - **VLAN Name** - Secondary
-       - Select **Add**
-   - Select **Custom Script**
-   - Select **Type or Paste Script**
-
-   .. literalinclude:: unattendpeeragentB.xml
-      :caption: PeerAgentB Unattend.xml
-      :language: xml
-
-#. Click **Save** and **Power on** the VM.
-
-   .. note::
-
-     There is a slight difference in the Sysprep script for PeerAgentB where the VM is not automatically joined to the NTNXLAB.local domain. This is because each cluster has an independent domain controller and we require that all VMs in the lab authenticate against the same Active Directory environment.
-
-#. Once *Initials*\ **-PeerAgentB** has powered on and completed its initial Sysprep process (~2 minutes), connect to the VM via RDP using the following credentials:
-
-   - **Username** - Administrator
-   - **Password** - nutanix/4u
-
-#. Open **PowerShell** and execute the following command, replacing **10.XX.YY.40** with the IP address of your primary cluster's **AutoDC2** (Domain Controller) VM:
-
-   .. code-block:: Powershell
-     :emphasize-lines: 1
-
-     # Updates your network adapter to use your Primary cluster DC for DNS
-     Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddress "10.XX.YY.40"
-
-   .. note::
-
-     When copying and pasting via RDP, pasting directly into PowerShell is inconsistent. If this is an issue, first paste into Notepad within the VM, then copy and paste into PowerShell.
-
-#. Run ``ipconfig /all`` and verify your **DNS Server** is set to the IP address of the **AutoDC2** VM on your primary cluster.
-
-#. Execute the following to join the domain and reboot *Initials*\ **PeerAgentB**:
-
-   .. code-block:: Powershell
-     :emphasize-lines: 1
-
-     # Joins the NTNXLAB.local domain of your Primary cluster and reboots the VM
-     $pass = convertto-securestring "nutanix/4u" -asplaintext -force
-     $domaincred = new-object system.management.automation.pscredential "NTNXLAB\Administrator",$pass
-     add-computer -credential $domaincred -domainname "NTNXLAB.local" -restart -force
+#. **Power On** your *Initials*\ **-PeerMgmt**, *Initials*\ **-PeerAgentA**, and *Initials*\ **-PeerAgentB** VMs.
 
 Windows File Server
 ...................
@@ -602,7 +545,7 @@ The following screenshot shows the PMC with a DFS Namespace under management.
 While this lab is not designed to showcase DFS Namespace management, we encourage you to reach out to us on Slack via the **#_peer_software_ext** channel for more information. We are happy to give you NFR licenses for your own lab and can walk you through DFS-N integration.
 
 Analyzing Existing Environments
-++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++
 
 As the capacity of file server environments increase at a record pace, storage admins often do not know how users and applications are leveraging these file server environments. This fact becomes most evident when it is time to migrate to a new storage platform. The File System Analyzer is a tool from Peer Software that is designed to help partners discover and analyze existing file and folder structures for the purpose of planning and optimization.
 
@@ -704,15 +647,6 @@ Takeaways
 - An in-depth Peer/Nutanix battlecard can be found `here <https://gpnportal.peersoftware.com/engage/peer-nutanix-battle-card-for-nutanix-files-afs/?sales_rep=aVFZUU9VZDVvbWZFNGhCTDBmM2lMZz09>`_.
 
 - NFR licenses are available for lab environments. Reach out via the #_peer_software_ext Slack channel to request one.
-
-Cleanup
-+++++++
-
-.. raw:: html
-
-  <strong><font color="red">Once your lab completion has been validated, PLEASE do your part to remove any unneeded VMs to ensure resources are available for all users on your shared cluster.</font></strong>
-
-Delete your *Initials*\ **-PeerAgentA**, *Initials*\ **-PeerAgentB**, and *Initials*\ **-PeerMgmt** VMs. If you have already completed, or do not plan to complete, the :ref:`hycu` lab, you can also delete your Nutanix Files deployment.
 
 Getting Connected
 +++++++++++++++++

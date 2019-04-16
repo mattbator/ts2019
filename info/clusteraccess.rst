@@ -4,17 +4,13 @@
 Accessing Your Cluster
 ----------------------
 
-Clusters used for both the **Hands on Learning** and **Field Focused Hackathon** tracks run within the Hosted POC environment, hosted in the Nutanix PHX and RTP datacenters.
+Clusters used for the labs run within the Hosted POC environment, hosted in the Nutanix PHX and RTP datacenters.
 
 In order to access these resources you must be connected to one of the (2) VPN options listed below. Connection to a virtual desktop environment **is not necessary**.
 
 .. note::
 
   Certain labs leverage a Windows VM with pre-installed tools to provide a controlled environment. It is **highly recommended** that you connect to these Windows VMs using the Microsoft Remote Desktop client rather than the VM console launched via Prism. An RDP connection will allow you to copy and paste between your device and the VMs.
-
-.. raw:: html
-
-  <strong><font color="red">If you encounter issues connecting to the VPN, Nutanix IT Helpdesk is located in the back of the Thai Chitlada Ballroom.</font></strong>
 
 Nutanix Employees
 .................
