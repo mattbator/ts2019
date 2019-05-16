@@ -146,7 +146,7 @@ The final step of staging the lab is configuring *Initials*\ **-PeerAgentB** as 
 
    Finally, you will populate your newly created Windows file share with sample data.
 
-#. Within your *Initials*\ **-PeerAgentB** VM, download the **SampleData_Small.zip** file from http://10.42.8.50/peer/ and extract its contents in ``C:\Data\``. When complete, your Data directory should resemble the screenshot below:
+#. Within your *Initials*\ **-PeerAgentB** VM, download the **SampleData_Small.zip** file from http://10.42.194.11/workshop_staging/peer/ and extract its contents in ``C:\Data\``. When complete, your Data directory should resemble the screenshot below:
 
    .. figure:: images/5.png
 
@@ -205,7 +205,7 @@ PMC does not store any file data but does facilitate communication between locat
    - **Username** - NTNXLAB\\Administrator
    - **Password** - nutanix/4u
 
-#. Within the VM, download **PMC_Installer_Win64.exe** AND **PeerGlobalFileService\*.lic** from http://10.42.8.50/peer/.
+#. Within the VM, download **PMC_Installer_Win64.exe** AND **PeerGlobalFileService\*.lic** from http://10.42.194.11/workshop_staging/peer/.
 
 #. Run **PMC_Installer_Win64.exe** and proceed with the default selections **UNTIL** you reach **Peer Management Center Web Server Configuration**.
 
